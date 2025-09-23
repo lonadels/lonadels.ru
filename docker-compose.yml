@@ -69,6 +69,10 @@ services:
     image: registry.lonadels.ru/lonadels/lonadels.ru:latest
     container_name: main-app
     restart: unless-stopped
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    depends_on:
+      - postgres
     networks:
       - app-network
 
@@ -93,7 +97,6 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
-      DATABASE_URL: ${DATABASE_URL}
     volumes:
       - ./docker/postgres/data:/var/lib/postgresql/data
     networks:
