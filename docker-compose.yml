@@ -10,7 +10,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./docker/certbot/conf:/etc/letsencrypt
       - ./docker/certbot/www:/var/www/certbot
     networks:
