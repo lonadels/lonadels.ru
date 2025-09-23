@@ -37,3 +37,6 @@ next-env.d.ts
 
 # Postgres data volume (generated at runtime)
 docker/postgres/data/
+
+# webstorm
+/.idea/
