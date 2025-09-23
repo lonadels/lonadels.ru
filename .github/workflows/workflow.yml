@@ -1,0 +1,30 @@
+name: ci
+
+on:
+  push:
+    branches: [ "main" ]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-push:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build image
+        run: |
+          docker build -t registry.lonadels.ru/lonadels/lonadels.ru:latest .
+      - name: Push image
+        run: |
+          docker push registry.lonadels.ru/lonadels/lonadels.ru:latest
+  deploy:
+    needs: build-and-push
+    runs-on: self-hosted
+    steps:
+      - name: Pull and restart app
+        run: |
+          docker compose pull main-app
+          docker compose up -d main-app --force-recreate

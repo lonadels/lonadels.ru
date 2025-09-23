@@ -1,0 +1,80 @@
+version: "3.9"
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: unless-stopped
+    depends_on:
+      - main-app
+      - registry
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./docker/certbot/conf:/etc/letsencrypt
+      - ./docker/certbot/www:/var/www/certbot
+    networks:
+      - app-network
+
+  certbot:
+    image: certbot/certbot:latest
+    container_name: certbot
+    restart: unless-stopped
+    volumes:
+      - ./docker/certbot/conf:/etc/letsencrypt
+      - ./docker/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew --quiet; sleep 12h & wait $${!}; done;'"
+    networks:
+      - app-network
+
+  # One-shot initial certificate issuance (do not start by default)
+  certbot_init_main:
+    image: certbot/certbot:latest
+    profiles: ["init"]
+    depends_on:
+      - nginx
+    volumes:
+      - ./docker/certbot/conf:/etc/letsencrypt
+      - ./docker/certbot/www:/var/www/certbot
+    command: >-
+      certonly --webroot -w /var/www/certbot 
+      -d lonadels.ru -d www.lonadels.ru 
+      --email lonadels@ya.ru --agree-tos --no-eff-email
+
+  certbot_init_registry:
+    image: certbot/certbot:latest
+    profiles: ["init"]
+    depends_on:
+      - nginx
+    volumes:
+      - ./docker/certbot/conf:/etc/letsencrypt
+      - ./docker/certbot/www:/var/www/certbot
+    command: >-
+      certonly --webroot -w /var/www/certbot 
+      -d registry.lonadels.ru 
+      --email lonadels@ya.ru --agree-tos --no-eff-email
+
+  main-app:
+    image: registry.lonadels.ru/lonadels/lonadels.ru:latest
+    container_name: main-app
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  registry:
+    image: registry:2
+    container_name: docker-registry
+    restart: unless-stopped
+    environment:
+      REGISTRY_HTTP_ADDR: 0.0.0.0:5000
+    volumes:
+      - ./docker/registry/data:/var/lib/registry
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
