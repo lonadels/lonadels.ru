@@ -18,7 +18,7 @@ RUN \
   fi
 
 # Copy Prisma schema and generate client
-COPY prisma ./prisma/
+COPY schema.prisma ./schema.prisma
 RUN npx prisma generate
 
 # Rebuild the source code only when needed
