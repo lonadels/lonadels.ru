@@ -4,6 +4,7 @@ import {Button} from '@/components/ui/button';
 import {useCallback, useState} from 'react';
 import {If, Then} from 'react-if';
 import {Loader2Icon} from 'lucide-react';
+import HelloEntity from '@/entities/hello.entity';
 
 export default function Home() {
     const [loading, setLoading] = useState<boolean>(false);
@@ -12,8 +13,8 @@ export default function Home() {
         setLoading(true);
         fetch("/api/hello")
             .then(async res => {
-                const data = await res.json();
-                alert(data);
+                const data: HelloEntity = await res.json();
+                alert(data.message);
             })
             .finally(() => setLoading(false));
     }, [])

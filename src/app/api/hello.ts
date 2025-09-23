@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
+import HelloEntity from '@/entities/hello.entity';
 
-export async function POST(request: Request) {
-    return NextResponse.json({ message: "Hello World" }, { status: 200 });
+export async function GET() {
+    const result: HelloEntity = {
+        message: 'Hello, world!'
+    };
+
+    return NextResponse.json(result, { status: 200 });
 }
