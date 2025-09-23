@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="230622e1-3162-47fd-b4a9-5a83c6a0e5ad" name="londaels.ru" url="https://lonadels.ru/">
+        <fileTransfer accessType="SFTP" host="lonadels.ru" port="22" sshConfigId="1a740a8d-edd5-4c75-afe2-98ff285be139" sshConfig="root@lonadels.ru:22 agent" authAgent="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
