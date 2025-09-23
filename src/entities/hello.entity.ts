@@ -1,5 +1,5 @@
 type HelloEntity = {
-    message: string
+    message: string|null
 }
 
 export default HelloEntity;

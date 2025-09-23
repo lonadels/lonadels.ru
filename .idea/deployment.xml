@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="londaels.ru" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" serverName="lonadels.ru" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="londaels.ru">
+      <paths name="lonadels.ru">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
