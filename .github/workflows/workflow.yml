@@ -21,6 +21,11 @@ jobs:
         run: |
           docker push registry.lonadels.ru/lonadels/lonadels.ru:latest
   deploy:
+    environment: production
+    env:
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
     needs: build-and-push
     runs-on: self-hosted
     steps:
