@@ -3,9 +3,6 @@ services:
     image: nginx:latest
     container_name: nginx
     restart: unless-stopped
-    depends_on:
-      - main-app
-      - registry
     ports:
       - "80:80"
       - "443:443"
