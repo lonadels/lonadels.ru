@@ -56,7 +56,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: registry.lonadels.ru
-          username: ${{ vars.REGISTRY_USERNAME }}
+          username: ${{ vars.DOCKER_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - name: Pull and restart app
         run: |
