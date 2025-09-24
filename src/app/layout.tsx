@@ -3,24 +3,23 @@ import {Geist, Geist_Mono} from 'next/font/google';
 import './globals.css';
 import {Toaster} from '@/components/ui/sonner';
 import {ThemeProvider} from '@/components/theme-provider';
-import {headers} from 'next/headers';
 import {NextIntlClientProvider} from 'next-intl';
-export type Locale = 'ru' | 'en';
+import {getMessages} from 'next-intl/server';
 
 const geistSans = Geist({
-    variable: '--font-geist-sans',
-    subsets: ['latin'],
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
 });
 
 const geistMono = Geist_Mono({
-    variable: '--font-geist-mono',
-    subsets: ['latin'],
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
 });
 
-const APP_NAME = "Lonadels";
-const APP_DEFAULT_TITLE = "Lonadels";
-const APP_TITLE_TEMPLATE = "%s - Lonadels";
-const APP_DESCRIPTION = "Сайт Lonadels";
+const APP_NAME = 'Lonadels';
+const APP_DEFAULT_TITLE = 'Lonadels';
+const APP_TITLE_TEMPLATE = '%s - Lonadels';
+const APP_DESCRIPTION = 'Сайт Lonadels';
 
 export const metadata: Metadata = {
   applicationName: APP_NAME,
@@ -31,7 +30,7 @@ export const metadata: Metadata = {
   description: APP_DESCRIPTION,
   appleWebApp: {
     capable: true,
-    statusBarStyle: "default",
+    statusBarStyle: 'default',
     title: APP_DEFAULT_TITLE,
     // startUpImage: [],
   },
@@ -39,7 +38,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    type: "website",
+    type: 'website',
     siteName: APP_NAME,
     title: {
       default: APP_DEFAULT_TITLE,
@@ -48,7 +47,7 @@ export const metadata: Metadata = {
     description: APP_DESCRIPTION,
   },
   twitter: {
-    card: "summary",
+    card: 'summary',
     title: {
       default: APP_DEFAULT_TITLE,
       template: APP_TITLE_TEMPLATE,
@@ -58,38 +57,35 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-    themeColor: [
-        { media: "(prefers-color-scheme: light)", color: "white" },
-        { media: "(prefers-color-scheme: dark)", color: "black" },
-    ],
-}
+  themeColor: [
+    {media: '(prefers-color-scheme: light)', color: 'white'},
+    {media: '(prefers-color-scheme: dark)', color: 'black'},
+  ],
+};
 
 export default async function RootLayout({
-                                       children,
-                                   }: Readonly<{
-    children: React.ReactNode;
+                                           children,
+                                         }: Readonly<{
+  children: React.ReactNode;
 }>) {
-    const h = await headers();
-    const accept = h.get('accept-language')?.toLowerCase() || '';
-    const initialLocale: Locale = accept.startsWith('en') ? 'en' : 'ru';
-    const messages = await import(`../../messages/${initialLocale}.json`).then(m => m.default);
-    return (
-        <html lang={initialLocale} dir="ltr" suppressHydrationWarning>
-        <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-        <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-        >
-            <NextIntlClientProvider locale={initialLocale} messages={messages}>
-                {children}
-                <Toaster/>
-            </NextIntlClientProvider>
-        </ThemeProvider>
-        </body>
-        </html>
-    );
+  const messages = await getMessages();
+  return (
+    <html dir="ltr" suppressHydrationWarning>
+    <body
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+    >
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <NextIntlClientProvider messages={messages}>
+        {children}
+        <Toaster/>
+      </NextIntlClientProvider>
+    </ThemeProvider>
+    </body>
+    </html>
+  );
 }
