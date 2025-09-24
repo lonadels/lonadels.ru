@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { ProxyKey } from '@prisma/client';
+import type { CreateProxyKeyResponse } from '@/lib/types';
 
 export const api = axios.create({
   // In the browser, a relative baseURL targets the same origin.
@@ -9,7 +9,7 @@ export const api = axios.create({
   },
 });
 
-export async function createProxyKey(): Promise<ProxyKey> {
-  const res = await api.post<ProxyKey>('/api/createProxyKey');
+export async function createProxyKey(): Promise<CreateProxyKeyResponse> {
+  const res = await api.post<CreateProxyKeyResponse>('/api/createProxyKey');
   return res.data;
 }

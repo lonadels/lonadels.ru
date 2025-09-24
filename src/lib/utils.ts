@@ -1,20 +1,23 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+import {type ClassValue, clsx} from 'clsx';
+import {twMerge} from 'tailwind-merge';
+import {isIP} from 'net';
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 export function isValidIP(ip: string | null): ip is string {
-  if (!ip) return false;
+  return !!ip && isIP(ip) !== 0;
+}
 
-  if(ip === '::1') return true;
-
-  const ipRegex = /^(\d{1,3}\.){3}\d{1,3}$/;
-  if (!ipRegex.test(ip)) return false;
-
-  return ip.split('.').every(octet => {
-    const num = parseInt(octet, 10);
-    return num >= 0 && num <= 255;
-  });
+export function extractClientIp(h: Headers): string | null {
+  const xff = h.get('x-forwarded-for');
+  if (xff) {
+    for (const part of xff.split(',').map(s => s.trim())) {
+      if (isValidIP(part)) return part;
+    }
+  }
+  const xri = h.get('x-real-ip');
+  if (xri && isValidIP(xri)) return xri;
+  return null;
 }

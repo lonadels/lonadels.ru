@@ -54,13 +54,22 @@ export function createOverlay<P>(Component: OverlayComponent<P>, initialProps: P
   const destroyInternal = () => {
     if (destroyed) return;
     destroyed = true;
-    try {
-      root?.unmount();
-    } catch {
+
+    const doUnmount = () => {
+      try {
+        root?.unmount();
+      } catch {
+      }
+      if (container?.parentNode) container.parentNode.removeChild(container);
+      root = null;
+      container = null;
+    };
+
+    if (typeof window !== 'undefined') {
+      setTimeout(doUnmount, 0);
+    } else {
+      doUnmount();
     }
-    if (container?.parentNode) container.parentNode.removeChild(container);
-    root = null;
-    container = null;
   };
 
   const api: OverlayInstance<P> = {

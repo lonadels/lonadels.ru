@@ -2,7 +2,7 @@
 
 import {Button} from '@/components/ui/button';
 import {useCallback, useState} from 'react';
-import {GlobeLock, Loader2Icon} from 'lucide-react';
+import {GlobeLock, Loader2Icon, LoaderCircle} from 'lucide-react';
 import {toast} from 'sonner';
 import axios from 'axios';
 import {createProxyKey} from '@/lib/api';
@@ -55,7 +55,7 @@ export default function Home() {
       <VpnKeyDialog.Viewport/>
       <main className="flex flex-col gap-[32px] row-start-2 items-center">
         <Button variant={'outline'} onClick={handleButtonClick} aria-busy={loading} disabled={loading}>
-          {loading ? <Loader2Icon className="animate-spin"/> : <GlobeLock/>}
+          {loading ? <LoaderCircle className="animate-spin" /> : <GlobeLock/>}
           Получить VPN-ключ
         </Button>
         {version && (
