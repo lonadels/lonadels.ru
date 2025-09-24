@@ -8,6 +8,8 @@ export function cn(...inputs: ClassValue[]) {
 export function isValidIP(ip: string | null): ip is string {
   if (!ip) return false;
 
+  if(ip === '::1') return true;
+
   const ipRegex = /^(\d{1,3}\.){3}\d{1,3}$/;
   if (!ipRegex.test(ip)) return false;
 
