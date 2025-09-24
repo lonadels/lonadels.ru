@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:1.9.0
 
 FROM node:20-alpine AS base
 
