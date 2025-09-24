@@ -27,6 +27,8 @@ jobs:
           context: .
           tags: registry.lonadels.ru/lonadels/lonadels.ru:latest
           push: true
+          cache-from: type=registry,ref=registry.lonadels.ru/lonadels/lonadels.ru:latest
+          cache-to: type=inline
           build-args: |
             POSTGRES_USER=${{ secrets.POSTGRES_USER }}
             POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
@@ -40,6 +42,17 @@ jobs:
             API_KEY=${{ secrets.API_KEY }}
   deploy:
     environment: production
+    env:
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      OUTLINE_API_URL: ${{ secrets.OUTLINE_API_URL }}
+      OUTLINE_FINGERPRINT: ${{ secrets.OUTLINE_FINGERPRINT }}
+      HOST_IP: ${{ secrets.HOST_IP }}
+      DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      API_KEY: ${{ secrets.API_KEY }}
     needs: build-and-push
     runs-on: self-hosted
     steps:
