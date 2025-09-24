@@ -74,6 +74,7 @@ services:
       OUTLINE_API_URL: ${OUTLINE_API_URL}
       OUTLINE_FINGERPRINT: ${OUTLINE_FINGERPRINT}
       HOST_IP: ${HOST_IP}
+      API_KEY: ${API_KEY}
     depends_on:
       postgres:
         condition: service_healthy
