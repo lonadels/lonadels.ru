@@ -11,6 +11,20 @@
 - Dockerfile со сборкой в режиме standalone, docker-compose с nginx, certbot, registry, postgres.
 - CI/CD: GitHub Actions собирает образ и деплоит на self‑hosted сервер (см. `.github/workflows/workflow.yml`).
 
+### Основные библиотеки
+- **zod** — валидация и типобезопасное парсинг конфигурации/данных. Применяется для переменных окружения в `src\lib\env.ts` (жёсткая проверка URL и обязательных полей).
+- **usehooks-ts** — набор готовых React‑хуков (например, `useLocalStorage`, `useEventListener`, `useIsClient`) для упрощения работы с состоянием и браузерными API.
+- **sonner** — лёгкие toast‑уведомления для UI.
+- **shadcn/ui + Radix UI** — UI‑примитивы и компоненты (в проекте используются диалоги и алерты: `@radix-ui/react-dialog`, `@radix-ui/react-alert-dialog`).
+- **class-variance-authority** + tailwind-merge — удобное управление вариациями классов и корректное слияние Tailwind‑классов.
+- **lucide-react** — иконки.
+- **next-themes** — переключение темы (light/dark) на стороне клиента.
+- **@serwist/next** — сервис‑воркер и PWA‑инфраструктура (см. `src\app\sw.ts`).
+- **axios** — HTTP‑клиент для серверных и клиентских запросов.
+- **react-if** — декларативный условный рендеринг компонентов.
+- **vaul** — анимационный Drawer/Sheet, поверх Radix‑примитивов.
+- **outlinevpn-api** — обёртка над Outline Manager API для создания/удаления access‑ключей.
+
 ## Переменные окружения
 Задаются через `.env` в разработке и через секреты/ENV в продакшне. Значения ниже примерные — подставьте свои.
 
