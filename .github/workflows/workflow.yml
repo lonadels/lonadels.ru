@@ -57,7 +57,7 @@ jobs:
         with:
           registry: registry.lonadels.ru
           username: ${{ vars.DOCKER_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Pull and restart app
         run: |
           docker compose pull main-app
