@@ -14,6 +14,8 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
+import {toast} from 'sonner';
+import {Textarea} from '@/components/ui/textarea';
 
 export default function Home() {
     const [loading, setLoading] = useState<boolean>(false);
@@ -26,7 +28,18 @@ export default function Home() {
             .then(async res => {
                 const data: HelloEntity = await res.json();
                 setResult(data.message);
-                setOpen(true);
+
+                if (data.message === null)
+                    toast.warning('Ключей пока нет', {
+                        description: 'Пожалуйста, попробуйте позже',
+                    });
+                else
+                    setOpen(true);
+            })
+            .catch(() => {
+                toast.error('Ошибка', {
+                    description: 'Не удалось получить VPN-ключ',
+                });
             })
             .finally(() => setLoading(false));
     }, []);
@@ -41,14 +54,14 @@ export default function Home() {
                             <Loader2Icon className="animate-spin"/>
                         </Then>
                     </If>
-                    Тест
+                    Получить VPN-ключ
                 </Button>
                 <AlertDialog open={open} onOpenChange={setOpen}>
                     <AlertDialogContent>
                         <AlertDialogHeader>
-                            <AlertDialogTitle>Результат</AlertDialogTitle>
+                            <AlertDialogTitle>Ваш VPN-ключ</AlertDialogTitle>
                             <AlertDialogDescription>
-                                {result}
+                              <Textarea value={result ?? ''} readOnly style={{wordBreak: 'break-word'}} />
                             </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
