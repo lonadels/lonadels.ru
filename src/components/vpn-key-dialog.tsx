@@ -48,7 +48,7 @@ const dialog = createOverlay<DialogProps>(
               />
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <AlertDialogFooter>
+          <AlertDialogFooter className={'flex flex-col'}>
             <Button type="button" variant="secondary" onClick={handleCopy} aria-label="Скопировать VPN-ключ">
               Скопировать
             </Button>
