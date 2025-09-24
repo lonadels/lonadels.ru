@@ -3,6 +3,8 @@ import {Geist, Geist_Mono} from 'next/font/google';
 import './globals.css';
 import {Toaster} from '@/components/ui/sonner';
 import {ThemeProvider} from '@/components/theme-provider';
+import {headers} from 'next/headers';
+import {I18nProvider, type Locale} from '@/lib/i18n';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -66,8 +68,11 @@ export default function RootLayout({
                                    }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const h = headers();
+    const accept = h.get('accept-language')?.toLowerCase() || '';
+    const initialLocale: Locale = accept.startsWith('en') ? 'en' : 'ru';
     return (
-        <html lang="ru" dir="ltr" suppressHydrationWarning>
+        <html lang={initialLocale} dir="ltr" suppressHydrationWarning>
         <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
@@ -77,8 +82,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
         >
-            {children}
-            <Toaster/>
+            <I18nProvider initialLocale={initialLocale}>
+                {children}
+                <Toaster/>
+            </I18nProvider>
         </ThemeProvider>
         </body>
         </html>

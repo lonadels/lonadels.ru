@@ -9,9 +9,11 @@ import {createProxyKey} from '@/lib/api';
 import type {ApiErrorResponse} from '@/lib/types';
 import VpnKeyDialog from '@/components/vpn-key-dialog';
 import HowToUse from '@/components/how-to-use';
+import {useI18n} from '@/lib/i18n';
 
 export default function Home() {
   const version = process.env.version;
+  const { t } = useI18n();
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -26,28 +28,28 @@ export default function Home() {
         if (axios.isAxiosError(e)) {
           const status = e.response?.status;
           const body = e.response?.data as ApiErrorResponse | undefined;
-          const message = (body && (body.message || body.error)) || 'Произошла ошибка';
+          const message = (body && (body.message || body.error)) || t('toasts.errors.default');
 
           switch (status) {
             case 400:
-              toast.warning('Некорректный запрос', {description: message});
+              toast.warning(t('toasts.errors.badRequest'), {description: message});
               break;
             case 401:
-              toast.error('Не авторизовано', {description: message});
+              toast.error(t('toasts.errors.unauthorized'), {description: message});
               break;
             case 403:
-              toast.warning('Пожалуйста, отключитесь от VPN');
+              toast.warning(t('toasts.errors.disconnectVpn'));
               break;
             case 429:
-              toast.warning('Слишком частые запросы', {
-                description: 'Пожалуйста, попробуйте немного позже',
+              toast.warning(t('toasts.errors.tooMany'), {
+                description: t('toasts.errors.tryLater'),
               });
               break;
             default:
-              toast.error('Ошибка сервера', {description: message});
+              toast.error(t('toasts.errors.server'), {description: message});
           }
         } else {
-          toast.error('Ошибка', {description: 'Не удалось получить VPN-ключ'});
+          toast.error(t('toasts.errors.generic'), {description: t('toasts.errors.failedToGetKey')});
         }
       })
       .finally(() => {
@@ -62,11 +64,11 @@ export default function Home() {
       <main className="flex flex-col gap-2 row-start-2 items-center">
         <Button variant={'outline'} onClick={handleButtonClick} aria-busy={loading} disabled={loading}>
           {loading ? <LoaderCircle className="animate-spin"/> : <GlobeLock/>}
-          Получить VPN-ключ
+          {t('home.getKey')}
         </Button>
         <HowToUse/>
         {version && (
-          <p className="text-xs text-muted-foreground">Версия {version}</p>
+          <p className="text-xs text-muted-foreground">{t('common.version', { version: String(version) })}</p>
         )}
       </main>
     </div>

@@ -15,17 +15,19 @@ import {Button} from '@/components/ui/button';
 import {toast} from 'sonner';
 import type {DialogProps} from '@/lib/types';
 import {createOverlay} from '@/lib/overlay';
+import {useI18n} from '@/lib/i18n';
 
 const dialog = createOverlay<DialogProps>(
   ({open, onOpenChange, accessUrl}) => {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
+    const { t } = useI18n();
 
     const handleCopy = async () => {
       try {
         await navigator.clipboard.writeText(accessUrl);
-        toast.success('Скопировано', { description: 'Ключ для подключения скопирован в буфер обмена' });
+        toast.success(t('toasts.copied.title'), { description: t('toasts.copied.description') });
       } catch {
-        toast.error('Не удалось скопировать');
+        toast.error(t('toasts.copyFailed'));
       }
     };
 
@@ -35,12 +37,12 @@ const dialog = createOverlay<DialogProps>(
       <AlertDialog open={open} onOpenChange={onOpenChange}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Ваш VPN-ключ</AlertDialogTitle>
+            <AlertDialogTitle>{t('dialog.title')}</AlertDialogTitle>
             <AlertDialogDescription id={descId}>
               <Textarea
                 value={accessUrl}
                 readOnly
-                aria-label="VPN ключ"
+                aria-label={t('dialog.textareaAria')}
                 aria-describedby={descId}
                 style={{wordBreak: 'break-word'}}
                 onClick={() => textareaRef.current?.select()}
@@ -49,10 +51,10 @@ const dialog = createOverlay<DialogProps>(
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter className={'flex flex-col'}>
-            <Button type="button" variant="secondary" onClick={handleCopy} aria-label="Скопировать VPN-ключ">
-              Скопировать
+            <Button type="button" variant="secondary" onClick={handleCopy} aria-label={t('dialog.copyAria')}>
+              {t('common.copy')}
             </Button>
-            <AlertDialogAction aria-label="Закрыть диалог">Закрыть</AlertDialogAction>
+            <AlertDialogAction aria-label={t('dialog.closeAria')}>{t('common.close')}</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

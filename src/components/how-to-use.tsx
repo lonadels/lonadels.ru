@@ -20,37 +20,39 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer';
 import {useMediaQuery} from 'usehooks-ts';
+import {useI18n} from '@/lib/i18n';
 
 export default function HowToUse() {
   const [open, setOpen] = React.useState(false);
   const isDesktop = useMediaQuery('(min-width: 768px)');
+  const { t } = useI18n();
 
-  const triggerButton = <Button variant="link">Как использовать</Button>;
-  const title = 'Инструкция';
+  const triggerButton = <Button variant="link">{t('howToUse.trigger')}</Button>;
+  const title = t('howToUse.title');
   const description = (
     <div className="space-y-3 text-left">
       <ol className="list-decimal list-inside space-y-2 leading-relaxed">
         <li>
-          Загрузите и установите{' '}
+          {t('howToUse.steps.one.textBefore')} {' '}
           <a
-            href="https://s3.amazonaws.com/outline-vpn/ru/get-started/index.html#step-3"
+            href={t('howToUse.steps.one.linkHref')}
             target="_blank"
             rel="noopener noreferrer"
             className="underline underline-offset-2 text-primary"
           >
-            клиент Outline
+            {t('howToUse.steps.one.linkText')}
           </a>
           .
         </li>
         <li>
-          Нажмите
+          {t('howToUse.steps.two.beforeBold')}
           {' '}
-          <span className="font-medium">Добавить сервер</span>
+          <span className="font-medium">{t('howToUse.steps.two.bold')}</span>
           {' '}
-          в приложении Outline.
+          {t('howToUse.steps.two.afterBold')}
         </li>
         <li>
-          Введите ключ доступа, полученный после нажатия кнопки «Получить VPN‑ключ» на этом сайте.
+          {t('howToUse.steps.three')}
         </li>
       </ol>
     </div>
@@ -83,7 +85,7 @@ export default function HowToUse() {
         </DrawerHeader>
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
-            <Button variant="outline">Закрыть</Button>
+            <Button variant="outline">{t('common.close')}</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>

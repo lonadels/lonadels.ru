@@ -1,0 +1,53 @@
+export const en = {
+  common: {
+    version: 'Version {version}',
+    close: 'Close',
+    copy: 'Copy',
+  },
+  home: {
+    getKey: 'Get VPN key',
+  },
+  toasts: {
+    copied: {
+      title: 'Copied',
+      description: 'The access key has been copied to the clipboard',
+    },
+    copyFailed: 'Failed to copy',
+    errors: {
+      default: 'An error occurred',
+      badRequest: 'Bad request',
+      unauthorized: 'Unauthorized',
+      disconnectVpn: 'Please disconnect from VPN',
+      tooMany: 'Too many requests',
+      tryLater: 'Please try again later',
+      server: 'Server error',
+      generic: 'Error',
+      failedToGetKey: 'Failed to get the VPN key',
+    },
+  },
+  howToUse: {
+    trigger: 'How to use',
+    title: 'Instructions',
+    steps: {
+      one: {
+        textBefore: 'Download and install',
+        linkText: 'Outline client',
+        linkHref: 'https://s3.amazonaws.com/outline-vpn/en/get-started/index.html#step-3',
+      },
+      two: {
+        beforeBold: 'Click',
+        bold: 'Add server',
+        afterBold: 'in the Outline app.',
+      },
+      three: 'Enter the access key you received after clicking the "Get VPN key" button on this website.',
+    },
+  },
+  dialog: {
+    title: 'Your VPN key',
+    textareaAria: 'VPN key',
+    copyAria: 'Copy VPN key',
+    closeAria: 'Close dialog',
+  },
+} as const;
+
+export type EnDict = typeof en;
