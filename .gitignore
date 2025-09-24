@@ -40,3 +40,7 @@ docker/postgres/data/
 
 # webstorm
 /.idea/
+
+# serwist
+public/sw*
+public/swe-worker*
