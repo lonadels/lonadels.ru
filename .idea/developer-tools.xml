@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DeveloperToolsToolWindowSettingsV1" lastSelectedContentNodeId="password-generator" pluginVersion="7.1.0">
-    <developerToolsConfigurations />
+    <developerToolsConfigurations>
+      <developerToolConfiguration developerToolId="password-generator" id="ff4136b8-cf4d-464c-a917-dbc925a9e49d" name="Workbench">
+        <properties>
+          <property key="addSymbols" type="CONFIGURATION" value="kotlin.Boolean|false" />
+        </properties>
+      </developerToolConfiguration>
+    </developerToolsConfigurations>
+    <expandedGroupNodeIds />
   </component>
 </project>
