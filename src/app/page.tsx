@@ -2,7 +2,6 @@
 
 import {Button} from '@/components/ui/button';
 import {useCallback, useState} from 'react';
-import {Else, If, Then} from 'react-if';
 import {GlobeLock, Loader2Icon} from 'lucide-react';
 import {toast} from 'sonner';
 import axios from 'axios';
@@ -11,6 +10,8 @@ import type {ApiErrorResponse} from '@/lib/types';
 import VpnKeyDialog from '@/components/vpn-key-dialog';
 
 export default function Home() {
+  const version = process.env.version;
+
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleButtonClick = useCallback(() => {
@@ -52,19 +53,14 @@ export default function Home() {
     <div
       className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-svh p-8 pb-20 gap-16 sm:p-20">
       <VpnKeyDialog.Viewport/>
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+      <main className="flex flex-col gap-[32px] row-start-2 items-center">
         <Button variant={'outline'} onClick={handleButtonClick} aria-busy={loading} disabled={loading}>
-          <If condition={loading}>
-            <Then>
-              <Loader2Icon className="animate-spin"/>
-            </Then>
-            <Else>
-              <GlobeLock/>
-            </Else>
-          </If>
+          {loading ? <Loader2Icon className="animate-spin"/> : <GlobeLock/>}
           Получить VPN-ключ
         </Button>
-
+        {version && (
+          <p className="text-xs text-muted-foreground">Версия {version}</p>
+        )}
       </main>
     </div>
   );
