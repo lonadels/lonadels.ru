@@ -2,6 +2,7 @@
 
 import React from 'react';
 import {createRoot, Root} from 'react-dom/client';
+import {I18nProvider, type Locale} from '@/lib/i18n';
 
 export type OverlayComponent<P> = React.ComponentType<
   P & { open: boolean; onOpenChange: (open: boolean) => void }
@@ -17,6 +18,22 @@ export type OverlayInstance<P> = {
 export type OverlayController<P> = OverlayInstance<P> & {
   Viewport: React.FC;
 };
+
+// Helper: detect initial locale from <html lang> or navigator
+function getInitialLocale(): Locale {
+  let lang = 'ru';
+  if (typeof document !== 'undefined') {
+    const htmlLang = document.documentElement.lang?.toLowerCase();
+    if (htmlLang?.startsWith('en')) lang = 'en';
+    if (htmlLang?.startsWith('ru')) lang = 'ru';
+  }
+  if (typeof navigator !== 'undefined') {
+    const nav = navigator.language?.toLowerCase();
+    if (nav?.startsWith('en')) lang = 'en';
+    if (nav?.startsWith('ru')) lang = 'ru';
+  }
+  return lang as Locale;
+}
 
 // Overlay factory with a ViewPort component to control mount/unmount lifecycle.
 export function createOverlay<P>(Component: OverlayComponent<P>, initialProps: P): OverlayController<P> {
@@ -40,14 +57,18 @@ export function createOverlay<P>(Component: OverlayComponent<P>, initialProps: P
   const rerender = () => {
     if (destroyed || !root) return;
     root.render(
-      React.createElement(Component, {
-        ...(props as P),
-        open: isOpen,
-        onOpenChange: (next: boolean) => {
-          isOpen = next;
-          rerender();
-        },
-      }),
+      React.createElement(
+        I18nProvider,
+        { initialLocale: getInitialLocale() },
+        React.createElement(Component, {
+          ...(props as P),
+          open: isOpen,
+          onOpenChange: (next: boolean) => {
+            isOpen = next;
+            rerender();
+          },
+        })
+      )
     );
   };
 

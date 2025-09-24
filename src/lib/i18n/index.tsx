@@ -29,13 +29,20 @@ export type I18nContextValue = {
 
 const I18nContext = createContext<I18nContextValue | null>(null);
 
-function getByPath(obj: any, path: string) {
-  return path.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), obj);
+function getByPath(obj: Record<string, unknown>, path: string): unknown {
+  return path
+    .split('.')
+    .reduce<unknown>((acc, key) => {
+      if (acc && typeof acc === 'object' && key in acc) {
+        return (acc as Record<string, unknown>)[key];
+      }
+      return undefined;
+    }, obj);
 }
 
 function format(str: string, params?: Record<string, string | number>): string {
   if (!params) return str;
-  return str.replace(/\{(\w+)\}/g, (_, k) => String(params[k] ?? `{${k}}`));
+  return str.replace(/\{(\w+)}/g, (_, k) => String(params[k] ?? `{${k}}`));
 }
 
 export function I18nProvider({children, initialLocale = 'ru'}: { children: React.ReactNode; initialLocale?: Locale }) {
