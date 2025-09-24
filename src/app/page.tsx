@@ -8,6 +8,7 @@ import axios from 'axios';
 import {createProxyKey} from '@/lib/api';
 import type {ApiErrorResponse} from '@/lib/types';
 import VpnKeyDialog from '@/components/vpn-key-dialog';
+import HowToUse from '@/components/how-to-use';
 
 export default function Home() {
   const version = process.env.version;
@@ -58,11 +59,12 @@ export default function Home() {
     <div
       className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-svh p-8 pb-20 gap-16 sm:p-20">
       <VpnKeyDialog.Viewport/>
-      <main className="flex flex-col gap-[32px] row-start-2 items-center">
+      <main className="flex flex-col gap-2 row-start-2 items-center">
         <Button variant={'outline'} onClick={handleButtonClick} aria-busy={loading} disabled={loading}>
           {loading ? <LoaderCircle className="animate-spin"/> : <GlobeLock/>}
           Получить VPN-ключ
         </Button>
+        <HowToUse/>
         {version && (
           <p className="text-xs text-muted-foreground">Версия {version}</p>
         )}
