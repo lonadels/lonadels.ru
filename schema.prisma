@@ -7,7 +7,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model ProxyToken {
-  id      Int    @id @default(autoincrement())
-  content String
+model ProxyKey {
+  id        Int      @id @default(autoincrement())
+  accessUrl String   @unique @map("access_url")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("proxy_keys")
 }
