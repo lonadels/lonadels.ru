@@ -70,7 +70,7 @@ services:
     container_name: main-app
     restart: unless-stopped
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      DATABASE_URL: ${DATABASE_URL}
     depends_on:
       postgres:
         condition: service_healthy
