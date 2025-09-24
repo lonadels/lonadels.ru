@@ -16,6 +16,8 @@ jobs:
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
       POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      OUTLINE_API_URL: ${{ secrets.OUTLINE_API_URL }}
+      OUTLINE_FINGERPRINT: ${{ secrets.OUTLINE_FINGERPRINT }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
