@@ -1,0 +1,51 @@
+{
+  "common": {
+    "version": "الإصدار {version}",
+    "close": "إغلاق",
+    "copy": "نسخ"
+  },
+  "home": {
+    "getKey": "الحصول على مفتاح VPN"
+  },
+  "toasts": {
+    "copied": {
+      "title": "تم النسخ",
+      "description": "تم نسخ مفتاح الوصول إلى الحافظة"
+    },
+    "copyFailed": "فشل النسخ",
+    "errors": {
+      "default": "حدث خطأ",
+      "badRequest": "طلب غير صحيح",
+      "unauthorized": "غير مصرح",
+      "disconnectVpn": "يرجى قطع الاتصال بشبكة VPN",
+      "tooMany": "عدد كبير جدًا من الطلبات",
+      "tryLater": "يرجى المحاولة لاحقًا",
+      "server": "خطأ في الخادم",
+      "generic": "خطأ",
+      "failedToGetKey": "فشل في الحصول على مفتاح VPN"
+    }
+  },
+  "howToUse": {
+    "trigger": "كيفية الاستخدام",
+    "title": "التعليمات",
+    "steps": {
+      "one": {
+        "textBefore": "قم بتنزيل وتثبيت",
+        "linkText": "عميل Outline",
+        "linkHref": "https://s3.amazonaws.com/outline-vpn/en/get-started/index.html#step-3"
+      },
+      "two": {
+        "beforeBold": "انقر على",
+        "bold": "إضافة خادم",
+        "afterBold": "في تطبيق Outline."
+      },
+      "three": "أدخل مفتاح الوصول الذي حصلت عليه بعد النقر على زر \"الحصول على مفتاح VPN\" في هذا الموقع."
+    }
+  },
+  "dialog": {
+    "title": "مفتاح VPN الخاص بك",
+    "textareaAria": "مفتاح VPN",
+    "copyAria": "نسخ مفتاح VPN",
+    "closeAria": "إغلاق الحوار"
+  }
+}

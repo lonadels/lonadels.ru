@@ -1,0 +1,51 @@
+{
+  "common": {
+    "version": "Versi {version}",
+    "close": "Tutup",
+    "copy": "Salin"
+  },
+  "home": {
+    "getKey": "Dapatkan kunci VPN"
+  },
+  "toasts": {
+    "copied": {
+      "title": "Tersalin",
+      "description": "Kunci akses telah disalin ke papan klip"
+    },
+    "copyFailed": "Gagal menyalin",
+    "errors": {
+      "default": "Terjadi kesalahan",
+      "badRequest": "Permintaan tidak valid",
+      "unauthorized": "Tidak berwenang",
+      "disconnectVpn": "Harap putuskan sambungan dari VPN",
+      "tooMany": "Terlalu banyak permintaan",
+      "tryLater": "Silakan coba lagi nanti",
+      "server": "Kesalahan server",
+      "generic": "Kesalahan",
+      "failedToGetKey": "Gagal mendapatkan kunci VPN"
+    }
+  },
+  "howToUse": {
+    "trigger": "Cara menggunakan",
+    "title": "Instruksi",
+    "steps": {
+      "one": {
+        "textBefore": "Unduh dan instal",
+        "linkText": "klien Outline",
+        "linkHref": "https://s3.amazonaws.com/outline-vpn/en/get-started/index.html#step-3"
+      },
+      "two": {
+        "beforeBold": "Klik",
+        "bold": "Tambahkan server",
+        "afterBold": "di aplikasi Outline."
+      },
+      "three": "Masukkan kunci akses yang Anda terima setelah mengklik tombol \"Dapatkan kunci VPN\" di situs ini."
+    }
+  },
+  "dialog": {
+    "title": "Kunci VPN Anda",
+    "textareaAria": "Kunci VPN",
+    "copyAria": "Salin kunci VPN",
+    "closeAria": "Tutup dialog"
+  }
+}

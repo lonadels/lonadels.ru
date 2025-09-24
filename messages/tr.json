@@ -1,0 +1,51 @@
+{
+  "common": {
+    "version": "Sürüm {version}",
+    "close": "Kapat",
+    "copy": "Kopyala"
+  },
+  "home": {
+    "getKey": "VPN anahtarı al"
+  },
+  "toasts": {
+    "copied": {
+      "title": "Kopyalandı",
+      "description": "Erişim anahtarı panoya kopyalandı"
+    },
+    "copyFailed": "Kopyalama başarısız",
+    "errors": {
+      "default": "Bir hata oluştu",
+      "badRequest": "Geçersiz istek",
+      "unauthorized": "Yetkisiz",
+      "disconnectVpn": "Lütfen VPN bağlantısını kesin",
+      "tooMany": "Çok fazla istek",
+      "tryLater": "Lütfen daha sonra tekrar deneyin",
+      "server": "Sunucu hatası",
+      "generic": "Hata",
+      "failedToGetKey": "VPN anahtarı alınamadı"
+    }
+  },
+  "howToUse": {
+    "trigger": "Nasıl kullanılır",
+    "title": "Talimatlar",
+    "steps": {
+      "one": {
+        "textBefore": "İndirip kurun",
+        "linkText": "Outline istemcisi",
+        "linkHref": "https://s3.amazonaws.com/outline-vpn/en/get-started/index.html#step-3"
+      },
+      "two": {
+        "beforeBold": "Tıklayın",
+        "bold": "Sunucu ekle",
+        "afterBold": "Outline uygulamasında."
+      },
+      "three": "Bu sitede \"VPN anahtarı al\" düğmesine tıkladıktan sonra aldığınız erişim anahtarını girin."
+    }
+  },
+  "dialog": {
+    "title": "VPN anahtarınız",
+    "textareaAria": "VPN anahtarı",
+    "copyAria": "VPN anahtarını kopyala",
+    "closeAria": "Diyaloğu kapat"
+  }
+}

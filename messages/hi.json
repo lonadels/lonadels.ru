@@ -1,0 +1,51 @@
+{
+  "common": {
+    "version": "संस्करण {version}",
+    "close": "बंद करें",
+    "copy": "कॉपी करें"
+  },
+  "home": {
+    "getKey": "VPN कुंजी प्राप्त करें"
+  },
+  "toasts": {
+    "copied": {
+      "title": "कॉपी किया गया",
+      "description": "एक्सेस कुंजी क्लिपबोर्ड में कॉपी हो गई है"
+    },
+    "copyFailed": "कॉपी करने में विफल",
+    "errors": {
+      "default": "एक त्रुटि हुई",
+      "badRequest": "गलत अनुरोध",
+      "unauthorized": "अनधिकृत",
+      "disconnectVpn": "कृपया VPN से डिस्कनेक्ट करें",
+      "tooMany": "बहुत अधिक अनुरोध",
+      "tryLater": "कृपया बाद में पुनः प्रयास करें",
+      "server": "सर्वर त्रुटि",
+      "generic": "त्रुटि",
+      "failedToGetKey": "VPN कुंजी प्राप्त करने में विफल"
+    }
+  },
+  "howToUse": {
+    "trigger": "कैसे उपयोग करें",
+    "title": "निर्देश",
+    "steps": {
+      "one": {
+        "textBefore": "डाउनलोड करें और इंस्टॉल करें",
+        "linkText": "Outline क्लाइंट",
+        "linkHref": "https://s3.amazonaws.com/outline-vpn/en/get-started/index.html#step-3"
+      },
+      "two": {
+        "beforeBold": "क्लिक करें",
+        "bold": "सर्वर जोड़ें",
+        "afterBold": "Outline ऐप में।"
+      },
+      "three": "इस वेबसाइट पर \"VPN कुंजी प्राप्त करें\" बटन पर क्लिक करने के बाद आपको मिली एक्सेस कुंजी दर्ज करें।"
+    }
+  },
+  "dialog": {
+    "title": "आपकी VPN कुंजी",
+    "textareaAria": "VPN कुंजी",
+    "copyAria": "VPN कुंजी कॉपी करें",
+    "closeAria": "संवाद बंद करें"
+  }
+}

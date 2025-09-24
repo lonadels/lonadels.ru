@@ -1,9 +1,30 @@
 import {cookies, headers} from 'next/headers';
 import {getRequestConfig} from 'next-intl/server';
 
-export type Locale = 'ru' | 'en' | 'fr' | 'uk' | 'uz' | 'de' | 'pl' | 'zh' | 'ja' | 'ko';
+export type Locale =
+  | 'ru'
+  | 'en'
+  | 'fr'
+  | 'uk'
+  | 'uz'
+  | 'de'
+  | 'pl'
+  | 'zh'
+  | 'ja'
+  | 'ko'
+  | 'es'
+  | 'ar'
+  | 'pt'
+  | 'id'
+  | 'hi'
+  | 'tr'
+  | 'vi'
+  | 'it';
 
-const SUPPORTED: readonly Locale[] = ['ru', 'en', 'fr', 'uk', 'uz', 'de', 'pl', 'zh', 'ja', 'ko'] as const;
+const SUPPORTED: readonly Locale[] = [
+  'ru', 'en', 'fr', 'uk', 'uz', 'de', 'pl', 'zh', 'ja', 'ko',
+  'es', 'ar', 'pt', 'id', 'hi', 'tr', 'vi', 'it'
+] as const;
 
 function detectFromAcceptLanguage(accept: string): Locale {
   if (!accept) return 'ru';
