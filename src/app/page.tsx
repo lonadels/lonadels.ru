@@ -31,11 +31,16 @@ export default function Home() {
             case 400:
               toast.warning('Некорректный запрос', {description: message});
               break;
+            case 401:
+              toast.error('Не авторизовано', {description: message});
+              break;
             case 403:
               toast.warning('Пожалуйста, отключитесь от VPN');
               break;
-            case 401:
-              toast.error('Не авторизовано', {description: message});
+            case 429:
+              toast.warning('Слишком частые запросы', {
+                description: 'Пожалуйста, попробуйте немного позже',
+              });
               break;
             default:
               toast.error('Ошибка сервера', {description: message});
@@ -55,7 +60,7 @@ export default function Home() {
       <VpnKeyDialog.Viewport/>
       <main className="flex flex-col gap-[32px] row-start-2 items-center">
         <Button variant={'outline'} onClick={handleButtonClick} aria-busy={loading} disabled={loading}>
-          {loading ? <LoaderCircle className="animate-spin" /> : <GlobeLock/>}
+          {loading ? <LoaderCircle className="animate-spin"/> : <GlobeLock/>}
           Получить VPN-ключ
         </Button>
         {version && (
