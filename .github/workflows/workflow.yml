@@ -48,9 +48,6 @@ jobs:
             DOCKER_USERNAME=${{ env.DOCKER_USERNAME }}
             DOCKER_PASSWORD=${{ env.DOCKER_PASSWORD }}
             API_KEY=${{ env.API_KEY }}
-      - name: Push image
-        run: |
-          docker push registry.lonadels.ru/lonadels/lonadels.ru:latest
   deploy:
     environment: production
     env:
