@@ -32,20 +32,22 @@ jobs:
           registry: registry.lonadels.ru
           username: ${{ vars.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Build image
-        run: >
-          docker build
-            --build-arg POSTGRES_USER=${{ env.POSTGRES_USER }}
-            --build-arg POSTGRES_PASSWORD=${{ env.POSTGRES_PASSWORD }}
-            --build-arg POSTGRES_DB=${{ env.POSTGRES_DB }}
-            --build-arg DATABASE_URL=${{ env.DATABASE_URL }}
-            --build-arg OUTLINE_API_URL=${{ env.OUTLINE_API_URL }}
-            --build-arg OUTLINE_FINGERPRINT=${{ env.OUTLINE_FINGERPRINT }}
-            --build-arg HOST_IP=${{ env.HOST_IP }}
-            --build-arg DOCKER_USERNAME=${{ env.DOCKER_USERNAME }}
-            --build-arg DOCKER_PASSWORD=${{ env.DOCKER_PASSWORD }}
-            --build-arg API_KEY=${{ env.API_KEY }}
-            -t registry.lonadels.ru/lonadels/lonadels.ru:latest .
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          tags: registry.lonadels.ru/lonadels/lonadels.ru:latest
+          build-args: |
+            POSTGRES_USER=${{ env.POSTGRES_USER }}
+            POSTGRES_PASSWORD=${{ env.POSTGRES_PASSWORD }}
+            POSTGRES_DB=${{ env.POSTGRES_DB }}
+            DATABASE_URL=${{ env.DATABASE_URL }}
+            OUTLINE_API_URL=${{ env.OUTLINE_API_URL }}
+            OUTLINE_FINGERPRINT=${{ env.OUTLINE_FINGERPRINT }}
+            HOST_IP=${{ env.HOST_IP }}
+            DOCKER_USERNAME=${{ env.DOCKER_USERNAME }}
+            DOCKER_PASSWORD=${{ env.DOCKER_PASSWORD }}
+            API_KEY=${{ env.API_KEY }}
       - name: Push image
         run: |
           docker push registry.lonadels.ru/lonadels/lonadels.ru:latest
