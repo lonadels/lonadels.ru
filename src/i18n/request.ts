@@ -1,30 +1,13 @@
 import {cookies, headers} from 'next/headers';
 import {getRequestConfig} from 'next-intl/server';
 
-export type Locale =
-  | 'ru'
-  | 'en'
-  | 'fr'
-  | 'uk'
-  | 'uz'
-  | 'de'
-  | 'pl'
-  | 'zh'
-  | 'ja'
-  | 'ko'
-  | 'es'
-  | 'ar'
-  | 'pt'
-  | 'id'
-  | 'hi'
-  | 'tr'
-  | 'vi'
-  | 'it';
-
-const SUPPORTED: readonly Locale[] = [
+// Single source of truth for supported locales
+export const SUPPORTED = [
   'ru', 'en', 'fr', 'uk', 'uz', 'de', 'pl', 'zh', 'ja', 'ko',
   'es', 'ar', 'pt', 'id', 'hi', 'tr', 'vi', 'it'
 ] as const;
+
+export type Locale = typeof SUPPORTED[number];
 
 function detectFromAcceptLanguage(accept: string): Locale {
   if (!accept) return 'ru';
@@ -37,7 +20,7 @@ function detectFromAcceptLanguage(accept: string): Locale {
   for (const tag of parts) {
     const primary = tag.split('-')[0];
     // Direct match first
-    if (SUPPORTED.includes(primary as Locale)) return primary as Locale;
+    if ((SUPPORTED as readonly string[]).includes(primary)) return primary as Locale;
     // Map common aliases if needed (none currently)
   }
   return 'ru';
@@ -46,7 +29,7 @@ function detectFromAcceptLanguage(accept: string): Locale {
 function coerceLocale(value: string | undefined, fallback: Locale): Locale {
   if (!value) return fallback;
   const v = value.toLowerCase();
-  return (SUPPORTED.includes(v as Locale) ? (v as Locale) : fallback);
+  return ((SUPPORTED as readonly string[]).includes(v) ? (v as Locale) : fallback);
 }
 
 export default getRequestConfig(async () => {

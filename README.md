@@ -28,7 +28,7 @@
 ## Интернационализация (i18n)
 Проект использует next-intl (App Router) без URL-префиксов языков.
 
-- Поддерживаемые локали: ru (по умолчанию), en, fr, uk, uz, de, pl, zh, ja, ko.
+- Поддерживаемые локали: ru (по умолчанию), en, fr, uk, uz, de, pl, zh, ja, ko, es, ar, pt, id, hi, tr, vi, it.
 - Сообщения хранятся в JSON-файлах: `messages/<locale>.json`.
 - Определение языка на сервере:
   - Парсится заголовок `Accept-Language`; выбирается первый поддерживаемый язык из списка, иначе `ru`.
@@ -38,16 +38,16 @@
   - Провайдер в `src\app\layout.tsx`: `<NextIntlClientProvider messages={messages}>`.
 
 Как переключить язык
-- Клиентом: достаточно установить cookie `locale` в `ru` или `en` и обновить страницу.
-- Сервером (рекомендуется): создать обработчик/экшн, который выставляет cookie и делает редирект.
-  Пример server action (упрощённо):
+- Клиентом: достаточно установить cookie `locale` в один из поддерживаемых значений (см. список выше) и обновить страницу.
+- Сервером (рекомендуется): используйте готовый server action `setLocale`:
   ```ts
-  'use server';
-  import {cookies} from 'next/headers';
+  import {setLocale} from '@/i18n/set-locale';
+  import type {Locale} from '@/i18n/request';
 
-  export async function setLocale(locale: 'ru' | 'en') {
-    const store = await cookies();
-    store.set('locale', locale, {path: '/', maxAge: 60*60*24*365});
+  // Пример вызова из Server Action или Route Handler
+  export async function changeLang(locale: Locale) {
+    await setLocale(locale);
+    // при необходимости сделайте редирект
   }
   ```
 
@@ -67,7 +67,7 @@
 
 Замечания
 - В данный момент язык не зашит в URL и не влияет на маршрутизацию. SEO-метки `hreflang` не настроены.
-- Если потребуется третий язык, добавьте `messages/<locale>.json` и включите его в тип `Locale` в `src\i18n\request.ts`.
+- Если потребуется дополнительный язык, добавьте `messages/<locale>.json` и включите его в массив `SUPPORTED` в `src\i18n\request.ts` (тип `Locale` выводится автоматически).
 
 ## Переменные окружения
 Задаются через `.env` в разработке и через секреты/ENV в продакшне. Значения ниже примерные — подставьте свои.
