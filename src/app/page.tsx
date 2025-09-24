@@ -2,7 +2,7 @@
 
 import {Button} from '@/components/ui/button';
 import {useCallback, useState} from 'react';
-import {GlobeLock, Loader2Icon, LoaderCircle} from 'lucide-react';
+import {GlobeLock, LoaderCircle} from 'lucide-react';
 import {toast} from 'sonner';
 import axios from 'axios';
 import {createProxyKey} from '@/lib/api';
