@@ -31,9 +31,17 @@ export default function Home() {
       method: 'POST',
     })
       .then(async res => {
-        const data: ProxyKey = await res.json();
-        setKey(data.accessUrl);
-        setOpen(true);
+        if (res.status === 200) {
+          const data: ProxyKey = await res.json();
+          setKey(data.accessUrl);
+          setOpen(true);
+        } else {
+          if (res.status === 400) {
+            const data: { error: string } = await res.json();
+            if (data.error === 'Please, disable VPN first')
+              toast.warning('Пожалуйста, отключитесь от VPN');
+          }
+        }
       })
       .catch(() => {
         toast.error('Ошибка', {
@@ -57,7 +65,7 @@ export default function Home() {
               <Loader2Icon className="animate-spin"/>
             </Then>
             <Else>
-              <GlobeLock />
+              <GlobeLock/>
             </Else>
           </If>
           Получить VPN-ключ

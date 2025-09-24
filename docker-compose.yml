@@ -73,6 +73,7 @@ services:
       DATABASE_URL: ${DATABASE_URL}
       OUTLINE_API_URL: ${OUTLINE_API_URL}
       OUTLINE_FINGERPRINT: ${OUTLINE_FINGERPRINT}
+      HOST_IP: ${HOST_IP}
     depends_on:
       postgres:
         condition: service_healthy

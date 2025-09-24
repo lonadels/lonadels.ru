@@ -18,6 +18,7 @@ jobs:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       OUTLINE_API_URL: ${{ secrets.OUTLINE_API_URL }}
       OUTLINE_FINGERPRINT: ${{ secrets.OUTLINE_FINGERPRINT }}
+      HOST_IP: ${{ secrets.HOST_IP }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,6 +37,7 @@ jobs:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       OUTLINE_API_URL: ${{ secrets.OUTLINE_API_URL }}
       OUTLINE_FINGERPRINT: ${{ secrets.OUTLINE_FINGERPRINT }}
+      HOST_IP: ${{ secrets.HOST_IP }}
     needs: build-and-push
     runs-on: self-hosted
     steps:

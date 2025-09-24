@@ -10,6 +10,9 @@ export async function POST() {
   if (!ip)
     return NextResponse.json({error: 'Can\'t get IP'}, {status: 400});
 
+  if( ip === process.env.HOST_IP! )
+    return NextResponse.json({error: 'Please, disable VPN first'}, {status: 400});
+
   const {accessUrl} = await vpn.createAccessKey();
 
   const device = await db.devices.upsert({
