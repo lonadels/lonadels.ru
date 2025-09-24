@@ -14,7 +14,7 @@ export async function createProxyKeyForIp(ip: string | null): Promise<ProxyKey> 
     throw new HttpError(400, 'Invalid or missing IP address');
 
   if (ip === process.env.HOST_IP)
-    throw new HttpError(400, 'Please, disable VPN first');
+    throw new HttpError(403, 'Requests from VPN are not allowed');
 
   const device = await upsertDevice(ip);
 
