@@ -20,12 +20,12 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer';
 import {useMediaQuery} from 'usehooks-ts';
-import {useI18n} from '@/lib/i18n';
+import {useTranslations} from 'next-intl';
 
 export default function HowToUse() {
   const [open, setOpen] = React.useState(false);
   const isDesktop = useMediaQuery('(min-width: 768px)');
-  const { t } = useI18n();
+  const t = useTranslations();
 
   const triggerButton = <Button variant="link">{t('howToUse.trigger')}</Button>;
   const title = t('howToUse.title');

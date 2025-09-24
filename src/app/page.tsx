@@ -9,11 +9,11 @@ import {createProxyKey} from '@/lib/api';
 import type {ApiErrorResponse} from '@/lib/types';
 import VpnKeyDialog from '@/components/vpn-key-dialog';
 import HowToUse from '@/components/how-to-use';
-import {useI18n} from '@/lib/i18n';
+import {useTranslations} from 'next-intl';
 
 export default function Home() {
   const version = process.env.version;
-  const { t } = useI18n();
+  const t = useTranslations();
 
   const [loading, setLoading] = useState<boolean>(false);
 

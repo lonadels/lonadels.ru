@@ -2,7 +2,9 @@
 
 import React from 'react';
 import {createRoot, Root} from 'react-dom/client';
-import {I18nProvider, type Locale} from '@/lib/i18n';
+import {NextIntlClientProvider, useLocale, useMessages} from 'next-intl';
+
+type Locale = 'ru' | 'en';
 
 export type OverlayComponent<P> = React.ComponentType<
   P & { open: boolean; onOpenChange: (open: boolean) => void }
@@ -44,6 +46,10 @@ export function createOverlay<P>(Component: OverlayComponent<P>, initialProps: P
   let props = initialProps;
   let destroyed = false;
 
+  // Will be provided by the surrounding app via Viewport hooks
+  let currentMessages: any | null = null;
+  let currentLocale: Locale = getInitialLocale();
+
   const ensureMount = () => {
     if (destroyed) return;
     if (root) return;
@@ -56,20 +62,24 @@ export function createOverlay<P>(Component: OverlayComponent<P>, initialProps: P
 
   const rerender = () => {
     if (destroyed || !root) return;
-    root.render(
-      React.createElement(
-        I18nProvider,
-        { initialLocale: getInitialLocale() },
-        React.createElement(Component, {
-          ...(props as P),
-          open: isOpen,
-          onOpenChange: (next: boolean) => {
-            isOpen = next;
-            rerender();
-          },
-        })
-      )
-    );
+    const content = React.createElement(Component, {
+      ...(props as P),
+      open: isOpen,
+      onOpenChange: (next: boolean) => {
+        isOpen = next;
+        rerender();
+      },
+    });
+
+    const node = currentMessages
+      ? React.createElement(
+          NextIntlClientProvider,
+          { locale: currentLocale, messages: currentMessages },
+          content
+        )
+      : null;
+
+    root.render(node);
   };
 
   const destroyInternal = () => {
@@ -114,12 +124,18 @@ export function createOverlay<P>(Component: OverlayComponent<P>, initialProps: P
   };
 
   const Viewport: React.FC = () => {
+    const messages = useMessages();
+    const locale = useLocale() as Locale;
+
     React.useEffect(() => {
+      currentMessages = messages as any;
+      currentLocale = locale;
       ensureMount();
+      rerender();
       return () => {
         destroyInternal();
       };
-    }, []);
+    }, [messages, locale]);
     return null;
   };
 

@@ -4,7 +4,8 @@ import './globals.css';
 import {Toaster} from '@/components/ui/sonner';
 import {ThemeProvider} from '@/components/theme-provider';
 import {headers} from 'next/headers';
-import {I18nProvider, type Locale} from '@/lib/i18n';
+import {NextIntlClientProvider} from 'next-intl';
+export type Locale = 'ru' | 'en';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -71,6 +72,7 @@ export default async function RootLayout({
     const h = await headers();
     const accept = h.get('accept-language')?.toLowerCase() || '';
     const initialLocale: Locale = accept.startsWith('en') ? 'en' : 'ru';
+    const messages = await import(`../../messages/${initialLocale}.json`).then(m => m.default);
     return (
         <html lang={initialLocale} dir="ltr" suppressHydrationWarning>
         <body
@@ -82,10 +84,10 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
         >
-            <I18nProvider initialLocale={initialLocale}>
+            <NextIntlClientProvider locale={initialLocale} messages={messages}>
                 {children}
                 <Toaster/>
-            </I18nProvider>
+            </NextIntlClientProvider>
         </ThemeProvider>
         </body>
         </html>

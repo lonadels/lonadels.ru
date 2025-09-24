@@ -15,12 +15,12 @@ import {Button} from '@/components/ui/button';
 import {toast} from 'sonner';
 import type {DialogProps} from '@/lib/types';
 import {createOverlay} from '@/lib/overlay';
-import {useI18n} from '@/lib/i18n';
+import {useTranslations} from 'next-intl';
 
 const dialog = createOverlay<DialogProps>(
   ({open, onOpenChange, accessUrl}) => {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
-    const { t } = useI18n();
+    const t = useTranslations();
 
     const handleCopy = async () => {
       try {
