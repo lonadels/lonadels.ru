@@ -1,0 +1,51 @@
+{
+  "common": {
+    "version": "版本 {version}",
+    "close": "关闭",
+    "copy": "复制"
+  },
+  "home": {
+    "getKey": "获取 VPN 密钥"
+  },
+  "toasts": {
+    "copied": {
+      "title": "已复制",
+      "description": "访问密钥已复制到剪贴板"
+    },
+    "copyFailed": "复制失败",
+    "errors": {
+      "default": "发生错误",
+      "badRequest": "错误的请求",
+      "unauthorized": "未授权",
+      "disconnectVpn": "请断开 VPN 连接",
+      "tooMany": "请求过多",
+      "tryLater": "请稍后再试",
+      "server": "服务器错误",
+      "generic": "错误",
+      "failedToGetKey": "获取 VPN 密钥失败"
+    }
+  },
+  "howToUse": {
+    "trigger": "使用方法",
+    "title": "使用说明",
+    "steps": {
+      "one": {
+        "textBefore": "下载并安装",
+        "linkText": "Outline 客户端",
+        "linkHref": "https://s3.amazonaws.com/outline-vpn/en/get-started/index.html#step-3"
+      },
+      "two": {
+        "beforeBold": "点击",
+        "bold": "添加服务器",
+        "afterBold": "在 Outline 应用中。"
+      },
+      "three": "输入您在本网站点击“获取 VPN 密钥”按钮后获得的访问密钥。"
+    }
+  },
+  "dialog": {
+    "title": "您的 VPN 密钥",
+    "textareaAria": "VPN 密钥",
+    "copyAria": "复制 VPN 密钥",
+    "closeAria": "关闭对话框"
+  }
+}

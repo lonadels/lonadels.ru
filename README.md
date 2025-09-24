@@ -25,6 +25,50 @@
 - **vaul** — анимационный Drawer/Sheet, поверх Radix‑примитивов.
 - **outlinevpn-api** — обёртка над Outline Manager API для создания/удаления access‑ключей.
 
+## Интернационализация (i18n)
+Проект использует next-intl (App Router) без URL-префиксов языков.
+
+- Поддерживаемые локали: ru (по умолчанию), en, fr, uk, uz, de, pl, zh, ja, ko.
+- Сообщения хранятся в JSON-файлах: `messages/<locale>.json`.
+- Определение языка на сервере:
+  - Парсится заголовок `Accept-Language`; выбирается первый поддерживаемый язык из списка, иначе `ru`.
+  - Если в cookies есть валидный `locale` из поддерживаемых — используется он. Логика находится в `src\i18n\request.ts`.
+- Подключение next-intl:
+  - Плагин в `next.config.ts` (`createNextIntlPlugin`).
+  - Провайдер в `src\app\layout.tsx`: `<NextIntlClientProvider messages={messages}>`.
+
+Как переключить язык
+- Клиентом: достаточно установить cookie `locale` в `ru` или `en` и обновить страницу.
+- Сервером (рекомендуется): создать обработчик/экшн, который выставляет cookie и делает редирект.
+  Пример server action (упрощённо):
+  ```ts
+  'use server';
+  import {cookies} from 'next/headers';
+
+  export async function setLocale(locale: 'ru' | 'en') {
+    const store = await cookies();
+    store.set('locale', locale, {path: '/', maxAge: 60*60*24*365});
+  }
+  ```
+
+Как добавлять/изменять переводы
+1) Добавьте ключи в оба файла `messages/*.json`, сохраняя одинаковую структуру.
+2) В компонентах используйте хук `useTranslations` или форматтеры next-intl.
+   Пример:
+   ```tsx
+   import {useTranslations} from 'next-intl';
+
+   export default function Button() {
+     const t = useTranslations('Common'); // соответствует секции в JSON
+     return <button>{t('getKey')}</button>;
+   }
+   ```
+3) Для серверных компонентов можно пользоваться `getMessages()` (см. layout) и передавать их через `NextIntlClientProvider`.
+
+Замечания
+- В данный момент язык не зашит в URL и не влияет на маршрутизацию. SEO-метки `hreflang` не настроены.
+- Если потребуется третий язык, добавьте `messages/<locale>.json` и включите его в тип `Locale` в `src\i18n\request.ts`.
+
 ## Переменные окружения
 Задаются через `.env` в разработке и через секреты/ENV в продакшне. Значения ниже примерные — подставьте свои.
 

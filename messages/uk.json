@@ -1,0 +1,51 @@
+{
+  "common": {
+    "version": "Версія {version}",
+    "close": "Закрити",
+    "copy": "Скопіювати"
+  },
+  "home": {
+    "getKey": "Отримати VPN-ключ"
+  },
+  "toasts": {
+    "copied": {
+      "title": "Скопійовано",
+      "description": "Ключ доступу скопійовано до буфера обміну"
+    },
+    "copyFailed": "Не вдалося скопіювати",
+    "errors": {
+      "default": "Виникла помилка",
+      "badRequest": "Некоректний запит",
+      "unauthorized": "Неавторизовано",
+      "disconnectVpn": "Будь ласка, від'єднайтесь від VPN",
+      "tooMany": "Забагато запитів",
+      "tryLater": "Будь ласка, спробуйте пізніше",
+      "server": "Помилка сервера",
+      "generic": "Помилка",
+      "failedToGetKey": "Не вдалося отримати VPN-ключ"
+    }
+  },
+  "howToUse": {
+    "trigger": "Як користуватися",
+    "title": "Інструкція",
+    "steps": {
+      "one": {
+        "textBefore": "Завантажте та встановіть",
+        "linkText": "клієнт Outline",
+        "linkHref": "https://s3.amazonaws.com/outline-vpn/en/get-started/index.html#step-3"
+      },
+      "two": {
+        "beforeBold": "Натисніть",
+        "bold": "Додати сервер",
+        "afterBold": "у застосунку Outline."
+      },
+      "three": "Введіть ключ доступу, отриманий після натискання кнопки «Отримати VPN‑ключ» на цьому сайті."
+    }
+  },
+  "dialog": {
+    "title": "Ваш VPN-ключ",
+    "textareaAria": "VPN-ключ",
+    "copyAria": "Скопіювати VPN-ключ",
+    "closeAria": "Закрити діалог"
+  }
+}

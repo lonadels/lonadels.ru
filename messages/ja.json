@@ -1,0 +1,51 @@
+{
+  "common": {
+    "version": "バージョン {version}",
+    "close": "閉じる",
+    "copy": "コピー"
+  },
+  "home": {
+    "getKey": "VPNキーを取得"
+  },
+  "toasts": {
+    "copied": {
+      "title": "コピーしました",
+      "description": "アクセスキーをクリップボードにコピーしました"
+    },
+    "copyFailed": "コピーに失敗しました",
+    "errors": {
+      "default": "エラーが発生しました",
+      "badRequest": "不正なリクエスト",
+      "unauthorized": "認証されていません",
+      "disconnectVpn": "VPNを切断してください",
+      "tooMany": "リクエストが多すぎます",
+      "tryLater": "後でもう一度お試しください",
+      "server": "サーバーエラー",
+      "generic": "エラー",
+      "failedToGetKey": "VPNキーの取得に失敗しました"
+    }
+  },
+  "howToUse": {
+    "trigger": "使い方",
+    "title": "手順",
+    "steps": {
+      "one": {
+        "textBefore": "ダウンロードしてインストール",
+        "linkText": "Outline クライアント",
+        "linkHref": "https://s3.amazonaws.com/outline-vpn/en/get-started/index.html#step-3"
+      },
+      "two": {
+        "beforeBold": "をクリック",
+        "bold": "サーバーを追加",
+        "afterBold": "Outlineアプリ内で。"
+      },
+      "three": "本サイトの「VPNキーを取得」ボタンをクリックして受け取ったアクセスキーを入力してください。"
+    }
+  },
+  "dialog": {
+    "title": "あなたのVPNキー",
+    "textareaAria": "VPNキー",
+    "copyAria": "VPNキーをコピー",
+    "closeAria": "ダイアログを閉じる"
+  }
+}

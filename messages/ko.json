@@ -1,0 +1,51 @@
+{
+  "common": {
+    "version": "버전 {version}",
+    "close": "닫기",
+    "copy": "복사"
+  },
+  "home": {
+    "getKey": "VPN 키 받기"
+  },
+  "toasts": {
+    "copied": {
+      "title": "복사됨",
+      "description": "액세스 키가 클립보드에 복사되었습니다"
+    },
+    "copyFailed": "복사에 실패했습니다",
+    "errors": {
+      "default": "오류가 발생했습니다",
+      "badRequest": "잘못된 요청",
+      "unauthorized": "인증되지 않았습니다",
+      "disconnectVpn": "VPN 연결을 해제해주세요",
+      "tooMany": "요청이 너무 많습니다",
+      "tryLater": "나중에 다시 시도해주세요",
+      "server": "서버 오류",
+      "generic": "오류",
+      "failedToGetKey": "VPN 키를 가져오지 못했습니다"
+    }
+  },
+  "howToUse": {
+    "trigger": "사용 방법",
+    "title": "단계",
+    "steps": {
+      "one": {
+        "textBefore": "다운로드 및 설치",
+        "linkText": "Outline 클라이언트",
+        "linkHref": "https://s3.amazonaws.com/outline-vpn/en/get-started/index.html#step-3"
+      },
+      "two": {
+        "beforeBold": "클릭",
+        "bold": "서버 추가",
+        "afterBold": "Outline 앱에서."
+      },
+      "three": "이 사이트에서 ‘VPN 키 받기’ 버튼을 눌러 받은 액세스 키를 입력하세요."
+    }
+  },
+  "dialog": {
+    "title": "당신의 VPN 키",
+    "textareaAria": "VPN 키",
+    "copyAria": "VPN 키 복사",
+    "closeAria": "대화 상자 닫기"
+  }
+}

@@ -3,8 +3,7 @@
 import React from 'react';
 import {createRoot, Root} from 'react-dom/client';
 import {NextIntlClientProvider, useLocale, useMessages} from 'next-intl';
-
-type Locale = 'ru' | 'en';
+import {Locale} from '@/i18n/request';
 
 export type OverlayComponent<P> = React.ComponentType<
   P & { open: boolean; onOpenChange: (open: boolean) => void }
@@ -21,22 +20,6 @@ export type OverlayController<P> = OverlayInstance<P> & {
   Viewport: React.FC;
 };
 
-// Helper: detect initial locale from <html lang> or navigator
-function getInitialLocale(): Locale {
-  let lang = 'ru';
-  if (typeof document !== 'undefined') {
-    const htmlLang = document.documentElement.lang?.toLowerCase();
-    if (htmlLang?.startsWith('en')) lang = 'en';
-    if (htmlLang?.startsWith('ru')) lang = 'ru';
-  }
-  if (typeof navigator !== 'undefined') {
-    const nav = navigator.language?.toLowerCase();
-    if (nav?.startsWith('en')) lang = 'en';
-    if (nav?.startsWith('ru')) lang = 'ru';
-  }
-  return lang as Locale;
-}
-
 // Overlay factory with a ViewPort component to control mount/unmount lifecycle.
 export function createOverlay<P>(Component: OverlayComponent<P>, initialProps: P): OverlayController<P> {
   let container: HTMLDivElement | null = null;
@@ -48,7 +31,7 @@ export function createOverlay<P>(Component: OverlayComponent<P>, initialProps: P
 
   // Will be provided by the surrounding app via Viewport hooks
   let currentMessages: Record<string, unknown> | null = null;
-  let currentLocale: Locale = getInitialLocale();
+  let currentLocale: Locale | null = null;
 
   const ensureMount = () => {
     if (destroyed) return;
@@ -74,7 +57,7 @@ export function createOverlay<P>(Component: OverlayComponent<P>, initialProps: P
     type IntlProviderProps = { locale?: string; messages: Record<string, unknown>; children?: React.ReactNode };
     const IntlProvider = NextIntlClientProvider as unknown as React.ComponentType<IntlProviderProps>;
 
-    const node = currentMessages
+    const node = currentMessages && currentLocale
       ? React.createElement(
           IntlProvider,
           { locale: currentLocale, messages: currentMessages as Record<string, unknown> },

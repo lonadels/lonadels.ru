@@ -1,0 +1,51 @@
+{
+  "common": {
+    "version": "Versiya {version}",
+    "close": "Yopish",
+    "copy": "Nusxa ko'chirish"
+  },
+  "home": {
+    "getKey": "VPN kalitini olish"
+  },
+  "toasts": {
+    "copied": {
+      "title": "Nusxalandi",
+      "description": "Kirish kaliti vaqtinchalik xotiraga nusxalandi"
+    },
+    "copyFailed": "Nusxa ko'chirib bo'lmadi",
+    "errors": {
+      "default": "Xatolik yuz berdi",
+      "badRequest": "Noto'g'ri so'rov",
+      "unauthorized": "Ruxsat etilmagan",
+      "disconnectVpn": "Iltimos, VPN'dan uziling",
+      "tooMany": "Juda ko'p so'rov",
+      "tryLater": "Iltimos, keyinroq urinib ko'ring",
+      "server": "Server xatosi",
+      "generic": "Xato",
+      "failedToGetKey": "VPN kalitini olish muvaffaqiyatsiz bo'ldi"
+    }
+  },
+  "howToUse": {
+    "trigger": "Qanday foydalanish",
+    "title": "Ko'rsatmalar",
+    "steps": {
+      "one": {
+        "textBefore": "Yuklab oling va o'rnating",
+        "linkText": "Outline mijoz",
+        "linkHref": "https://s3.amazonaws.com/outline-vpn/en/get-started/index.html#step-3"
+      },
+      "two": {
+        "beforeBold": "Bosing",
+        "bold": "Server qo'shish",
+        "afterBold": "Outline ilovasida."
+      },
+      "three": "Ushbu saytda «VPN kalitini olish» tugmasini bosgandan so'ng olingan kirish kalitini kiriting."
+    }
+  },
+  "dialog": {
+    "title": "Sizning VPN kalitingiz",
+    "textareaAria": "VPN kaliti",
+    "copyAria": "VPN kalitini nusxalash",
+    "closeAria": "Dialogni yopish"
+  }
+}

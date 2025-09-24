@@ -1,0 +1,51 @@
+{
+  "common": {
+    "version": "Version {version}",
+    "close": "Schließen",
+    "copy": "Kopieren"
+  },
+  "home": {
+    "getKey": "VPN-Schlüssel erhalten"
+  },
+  "toasts": {
+    "copied": {
+      "title": "Kopiert",
+      "description": "Der Zugriffsschlüssel wurde in die Zwischenablage kopiert"
+    },
+    "copyFailed": "Kopieren fehlgeschlagen",
+    "errors": {
+      "default": "Ein Fehler ist aufgetreten",
+      "badRequest": "Ungültige Anfrage",
+      "unauthorized": "Nicht autorisiert",
+      "disconnectVpn": "Bitte trennen Sie die VPN-Verbindung",
+      "tooMany": "Zu viele Anfragen",
+      "tryLater": "Bitte versuchen Sie es später erneut",
+      "server": "Serverfehler",
+      "generic": "Fehler",
+      "failedToGetKey": "VPN-Schlüssel konnte nicht abgerufen werden"
+    }
+  },
+  "howToUse": {
+    "trigger": "Wie verwenden",
+    "title": "Anleitung",
+    "steps": {
+      "one": {
+        "textBefore": "Laden Sie herunter und installieren Sie den",
+        "linkText": "Outline-Client",
+        "linkHref": "https://s3.amazonaws.com/outline-vpn/en/get-started/index.html#step-3"
+      },
+      "two": {
+        "beforeBold": "Klicken Sie auf",
+        "bold": "Server hinzufügen",
+        "afterBold": "in der Outline-App."
+      },
+      "three": "Geben Sie den Zugriffsschlüssel ein, den Sie nach dem Klicken auf die Schaltfläche „VPN-Schlüssel erhalten“ auf dieser Website erhalten haben."
+    }
+  },
+  "dialog": {
+    "title": "Ihr VPN-Schlüssel",
+    "textareaAria": "VPN-Schlüssel",
+    "copyAria": "VPN-Schlüssel kopieren",
+    "closeAria": "Dialog schließen"
+  }
+}

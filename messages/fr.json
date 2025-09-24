@@ -1,0 +1,51 @@
+{
+  "common": {
+    "version": "Version {version}",
+    "close": "Fermer",
+    "copy": "Copier"
+  },
+  "home": {
+    "getKey": "Obtenir une clé VPN"
+  },
+  "toasts": {
+    "copied": {
+      "title": "Copié",
+      "description": "La clé d'accès a été copiée dans le presse-papiers"
+    },
+    "copyFailed": "Échec de la copie",
+    "errors": {
+      "default": "Une erreur s'est produite",
+      "badRequest": "Requête incorrecte",
+      "unauthorized": "Non autorisé",
+      "disconnectVpn": "Veuillez vous déconnecter du VPN",
+      "tooMany": "Trop de requêtes",
+      "tryLater": "Veuillez réessayer plus tard",
+      "server": "Erreur du serveur",
+      "generic": "Erreur",
+      "failedToGetKey": "Échec de l'obtention de la clé VPN"
+    }
+  },
+  "howToUse": {
+    "trigger": "Comment utiliser",
+    "title": "Instructions",
+    "steps": {
+      "one": {
+        "textBefore": "Téléchargez et installez",
+        "linkText": "Client Outline",
+        "linkHref": "https://s3.amazonaws.com/outline-vpn/en/get-started/index.html#step-3"
+      },
+      "two": {
+        "beforeBold": "Cliquez sur",
+        "bold": "Ajouter un serveur",
+        "afterBold": "dans l'application Outline."
+      },
+      "three": "Saisissez la clé d'accès reçue après avoir cliqué sur le bouton « Obtenir une clé VPN » sur ce site."
+    }
+  },
+  "dialog": {
+    "title": "Votre clé VPN",
+    "textareaAria": "Clé VPN",
+    "copyAria": "Copier la clé VPN",
+    "closeAria": "Fermer la boîte de dialogue"
+  }
+}
