@@ -1,13 +1,6 @@
 import {cookies, headers} from 'next/headers';
 import {getRequestConfig} from 'next-intl/server';
-
-// Single source of truth for supported locales
-export const SUPPORTED = [
-  'ru', 'en', 'fr', 'uk', 'uz', 'de', 'pl', 'zh', 'ja', 'ko',
-  'es', 'ar', 'pt', 'id', 'hi', 'tr', 'vi', 'it'
-] as const;
-
-export type Locale = typeof SUPPORTED[number];
+import {SUPPORTED, type Locale} from './locales';
 
 function detectFromAcceptLanguage(accept: string): Locale {
   if (!accept) return 'ru';
