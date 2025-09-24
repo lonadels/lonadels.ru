@@ -1,4 +1,4 @@
-# syntax=docker.io/docker/dockerfile:1
+# syntax=docker/dockerfile:1.4
 
 FROM node:20-alpine AS base
 
@@ -6,18 +6,11 @@ FROM node:20-alpine AS base
 FROM base AS deps
 # Build-time arguments (passed from CI)
 ARG POSTGRES_USER
-ARG POSTGRES_PASSWORD
 ARG POSTGRES_DB
-ARG DATABASE_URL
 ARG OUTLINE_API_URL
 ARG OUTLINE_FINGERPRINT
 ARG HOST_IP
 ARG DOCKER_USERNAME
-ARG DOCKER_PASSWORD
-ARG API_KEY
-
-# Expose essential envs during deps stage (e.g., for Prisma)
-ENV DATABASE_URL=${DATABASE_URL}
 
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
@@ -34,33 +27,26 @@ RUN \
 
 # Copy Prisma schema and generate client
 COPY schema.prisma ./schema.prisma
-RUN npx prisma generate
+# Use BuildKit secret for DATABASE_URL during prisma generate
+RUN --mount=type=secret,id=DATABASE_URL sh -c "export DATABASE_URL=\$(cat /run/secrets/DATABASE_URL) && npx prisma generate"
 
 # Rebuild the source code only when needed
 FROM base AS builder
 # Build-time arguments (passed from CI)
 ARG POSTGRES_USER
-ARG POSTGRES_PASSWORD
 ARG POSTGRES_DB
-ARG DATABASE_URL
 ARG OUTLINE_API_URL
 ARG OUTLINE_FINGERPRINT
 ARG HOST_IP
 ARG DOCKER_USERNAME
-ARG DOCKER_PASSWORD
-ARG API_KEY
 
-# Make them available during build
+# Make non-sensitive args available during build
 ENV POSTGRES_USER=${POSTGRES_USER} \
-    POSTGRES_PASSWORD=${POSTGRES_PASSWORD} \
     POSTGRES_DB=${POSTGRES_DB} \
-    DATABASE_URL=${DATABASE_URL} \
     OUTLINE_API_URL=${OUTLINE_API_URL} \
     OUTLINE_FINGERPRINT=${OUTLINE_FINGERPRINT} \
     HOST_IP=${HOST_IP} \
-    DOCKER_USERNAME=${DOCKER_USERNAME} \
-    DOCKER_PASSWORD=${DOCKER_PASSWORD} \
-    API_KEY=${API_KEY}
+    DOCKER_USERNAME=${DOCKER_USERNAME}
 
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
@@ -73,12 +59,14 @@ RUN mkdir -p public
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN \
+RUN --mount=type=secret,id=DATABASE_URL --mount=type=secret,id=API_KEY sh -c "\
+  export DATABASE_URL=\$(cat /run/secrets/DATABASE_URL); \
+  export API_KEY=\$(cat /run/secrets/API_KEY); \
   if [ -f yarn.lock ]; then yarn run build; \
   elif [ -f package-lock.json ]; then npm run build; \
   elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
+  else echo 'Lockfile not found.' && exit 1; \
+  fi"
 
 # Production image, copy all the files and run next
 FROM base AS runner
@@ -86,27 +74,21 @@ WORKDIR /app
 
 # Accept the same build-time args in the final stage (optional)
 ARG POSTGRES_USER
-ARG POSTGRES_PASSWORD
 ARG POSTGRES_DB
 ARG DATABASE_URL
 ARG OUTLINE_API_URL
 ARG OUTLINE_FINGERPRINT
 ARG HOST_IP
 ARG DOCKER_USERNAME
-ARG DOCKER_PASSWORD
-ARG API_KEY
 
 # Provide default runtime envs (can be overridden by docker-compose)
 ENV POSTGRES_USER=${POSTGRES_USER} \
-    POSTGRES_PASSWORD=${POSTGRES_PASSWORD} \
     POSTGRES_DB=${POSTGRES_DB} \
     DATABASE_URL=${DATABASE_URL} \
     OUTLINE_API_URL=${OUTLINE_API_URL} \
     OUTLINE_FINGERPRINT=${OUTLINE_FINGERPRINT} \
     HOST_IP=${HOST_IP} \
-    DOCKER_USERNAME=${DOCKER_USERNAME} \
-    DOCKER_PASSWORD=${DOCKER_PASSWORD} \
-    API_KEY=${API_KEY}
+    DOCKER_USERNAME=${DOCKER_USERNAME}
 
 ENV NODE_ENV=production
 # Uncomment the following line in case you want to disable telemetry during runtime.
