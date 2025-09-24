@@ -2,8 +2,8 @@
 
 import {Button} from '@/components/ui/button';
 import {useCallback, useRef, useState} from 'react';
-import {If, Then} from 'react-if';
-import {Loader2Icon} from 'lucide-react';
+import {Else, If, Then} from 'react-if';
+import {GlobeLock, Loader2Icon} from 'lucide-react';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -49,13 +49,16 @@ export default function Home() {
 
   return (
     <div
-      className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+      className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-svh p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Button onClick={handleButtonClick} aria-busy={loading} disabled={loading}>
+        <Button variant={'outline'} onClick={handleButtonClick} aria-busy={loading} disabled={loading}>
           <If condition={loading}>
             <Then>
               <Loader2Icon className="animate-spin"/>
             </Then>
+            <Else>
+              <GlobeLock />
+            </Else>
           </If>
           Получить VPN-ключ
         </Button>
