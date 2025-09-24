@@ -47,7 +47,7 @@ export function createOverlay<P>(Component: OverlayComponent<P>, initialProps: P
   let destroyed = false;
 
   // Will be provided by the surrounding app via Viewport hooks
-  let currentMessages: any | null = null;
+  let currentMessages: Record<string, unknown> | null = null;
   let currentLocale: Locale = getInitialLocale();
 
   const ensureMount = () => {
@@ -71,10 +71,13 @@ export function createOverlay<P>(Component: OverlayComponent<P>, initialProps: P
       },
     });
 
+    type IntlProviderProps = { locale?: string; messages: Record<string, unknown>; children?: React.ReactNode };
+    const IntlProvider = NextIntlClientProvider as unknown as React.ComponentType<IntlProviderProps>;
+
     const node = currentMessages
       ? React.createElement(
-          NextIntlClientProvider,
-          { locale: currentLocale, messages: currentMessages },
+          IntlProvider,
+          { locale: currentLocale, messages: currentMessages as Record<string, unknown> },
           content
         )
       : null;
@@ -128,7 +131,7 @@ export function createOverlay<P>(Component: OverlayComponent<P>, initialProps: P
     const locale = useLocale() as Locale;
 
     React.useEffect(() => {
-      currentMessages = messages as any;
+      currentMessages = messages as unknown as Record<string, unknown>;
       currentLocale = locale;
       ensureMount();
       rerender();
