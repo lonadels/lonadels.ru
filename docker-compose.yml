@@ -48,8 +48,8 @@ services:
       - ./docker/certbot/conf:/etc/letsencrypt
       - ./docker/certbot/www:/var/www/certbot
     command: >-
-      certonly --webroot -w /var/www/certbot 
-      -d lonadels.ru -d www.lonadels.ru 
+      certonly --webroot -w /var/www/certbot
+      -d lonadels.ru -d www.lonadels.ru
       --email lonadels@ya.ru --agree-tos --no-eff-email
 
   certbot_init_registry:
@@ -61,8 +61,8 @@ services:
       - ./docker/certbot/conf:/etc/letsencrypt
       - ./docker/certbot/www:/var/www/certbot
     command: >-
-      certonly --webroot -w /var/www/certbot 
-      -d registry.lonadels.ru 
+      certonly --webroot -w /var/www/certbot
+      -d registry.lonadels.ru
       --email lonadels@ya.ru --agree-tos --no-eff-email
 
   main-app:
@@ -71,6 +71,8 @@ services:
     restart: unless-stopped
     environment:
       DATABASE_URL: ${DATABASE_URL}
+      OUTLINE_API_URL: ${OUTLINE_API_URL}
+      OUTLINE_FINGERPRINT: ${OUTLINE_FINGERPRINT}
     depends_on:
       postgres:
         condition: service_healthy
