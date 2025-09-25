@@ -6,7 +6,7 @@
 - Next.js (App Router), React 19, Tailwind CSS.
 - Prisma ORM + PostgreSQL 16.
 - Интеграция с Outline API (outlinevpn-api).
-- Rate limit: 5 запросов на IP в минуту для `POST /api/createProxyKey`.
+- Rate limit: 3 запроса на IP в минуту, 10 за 6 часов и 30 за 24 часа для `POST /api/createProxyKey`.
 - Защищённый endpoint `POST /api/clearAllProxyKeys` с заголовком `x-api-key`.
 - Dockerfile со сборкой в режиме standalone, docker-compose с nginx, certbot, registry, postgres.
 - CI/CD: GitHub Actions собирает образ и деплоит на self‑hosted сервер (см. `.github/workflows/workflow.yml`).
@@ -102,7 +102,7 @@
 ## API
 - POST /api/createProxyKey
   - Возвращает `{ accessUrl: string }`.
-  - Rate limit: 5 запросов в минуту на IP (заголовки X-RateLimit-*, Retry-After).
+  - Rate limit: 3 в минуту, 10 за 6 часов и 30 за 24 часа на IP (заголовки X-RateLimit-*, Retry-After).
   - Внутри: привязка устройства по IP, повторная выдача свободного ключа либо создание нового через Outline API.
   - Ошибки: 400 (неверный IP), 403 (запрос из VPN — совпадает с HOST_IP), 429, 500 и т.д.
 
@@ -166,3 +166,9 @@ docker compose up -d main-app --force-recreate
 - При ошибках Outline проверьте корректность `OUTLINE_API_URL` и `OUTLINE_FINGERPRINT`.
 - Убедитесь, что `HOST_IP` совпадает с внешним IP сервера — это нужно, чтобы блокировать запросы изнутри VPN.
 - Для локальной разработки избегайте хранения реальных секретов в репозитории; используйте `.env.local` и переменные окружения.
+
+## Swagger / OpenAPI
+- Живая документация: откройте /api/docs (например, http://localhost:3000/api/docs)
+- JSON‑схема OpenAPI: /openapi.json (http://localhost:3000/openapi.json)
+
+Документация собирается без дополнительных зависимостей через Swagger UI (CDN) и описывает существующие endpoints (/api/createProxyKey и /api/clearAllProxyKeys). Спецификация вынесена в отдельный файл public\\openapi.json; маршрут /api/openapi сохраняется и делает редирект на /openapi.json.
