@@ -33,9 +33,13 @@ export function createOverlay<P>(Component: OverlayComponent<P>, initialProps: P
   let currentMessages: Record<string, unknown> | null = null;
   let currentLocale: Locale | null = null;
 
+  const hasIntl = () => Boolean(currentMessages && currentLocale);
+
   const ensureMount = () => {
     if (destroyed) return;
     if (root) return;
+    // Only mount when i18n context is ready to avoid rendering null into a root
+    if (!hasIntl()) return;
     container = document.createElement('div');
     container.setAttribute('data-overlay-root', '');
     document.body.appendChild(container);
@@ -57,35 +61,37 @@ export function createOverlay<P>(Component: OverlayComponent<P>, initialProps: P
     type IntlProviderProps = { locale?: string; messages: Record<string, unknown>; children?: React.ReactNode };
     const IntlProvider = NextIntlClientProvider as unknown as React.ComponentType<IntlProviderProps>;
 
-    const node = currentMessages && currentLocale
-      ? React.createElement(
-          IntlProvider,
-          { locale: currentLocale, messages: currentMessages as Record<string, unknown> },
-          content
-        )
-      : null;
+    if (!hasIntl()) return; // Do not render null to avoid React deletions on a detached container
+
+    const node = React.createElement(
+      IntlProvider,
+      { locale: currentLocale as string, messages: currentMessages as Record<string, unknown> },
+      content
+    );
 
     root.render(node);
   };
 
   const destroyInternal = () => {
-    if (destroyed) return;
-    destroyed = true;
+    // Instead of tearing down the container/root (which can race with React's deletion phase),
+    // just clear the content and keep the container for reuse across route transitions.
+    isOpen = false;
 
-    const doUnmount = () => {
+    const doClear = () => {
       try {
-        root?.unmount();
+        if (root) {
+          // Render an empty tree to allow React to commit deletions safely within the container.
+          root.render(React.createElement(React.Fragment));
+        }
       } catch {
       }
-      if (container?.parentNode) container.parentNode.removeChild(container);
-      root = null;
-      container = null;
+      // Do NOT remove the container or null out the root; keep them for subsequent mounts.
     };
 
     if (typeof window !== 'undefined') {
-      setTimeout(doUnmount, 0);
+      setTimeout(doClear, 0);
     } else {
-      doUnmount();
+      doClear();
     }
   };
 
