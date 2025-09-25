@@ -1,7 +1,7 @@
 'use server';
 
 import {cookies} from 'next/headers';
-import type {Locale} from './request';
+import type {Locale} from './locales';
 
 /**
  * Sets the UI locale cookie. Can be used from Server Actions or Route Handlers.
