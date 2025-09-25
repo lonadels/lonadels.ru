@@ -115,12 +115,12 @@ export default function ProxyKeyFull({uuid, initial = null, serverError = null}:
     );
   }
 
-  return <div className={'flex flex-col justify-center gap-2'}>
+  return <div className={'flex flex-col justify-center gap-2 space-y-2'}>
     <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-2 text-center sm:text-start">
-      <h2 className="scroll-m-20 text-xl font-semibold tracking-tight">
+      <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
         {t('fullKeyPage.title')}
       </h2>
-      <span className="text-sm sm:text-xl font-semibold text-muted-foreground whitespace-nowrap">
+      <span className="text-sm sm:text-2xl font-semibold text-muted-foreground whitespace-nowrap">
         {connector
           ? `${format(new Date(proxyKey.createdAt), 'P', {locale: dfLocale})} ${connector} ${format(new Date(proxyKey.createdAt), 'p', {locale: dfLocale})}`
           : format(new Date(proxyKey.createdAt), 'Pp', {locale: dfLocale})}
