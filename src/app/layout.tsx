@@ -7,6 +7,7 @@ import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import LanguageSelect from '@/components/language-select';
 import {ToggleColorMode} from '@/components/toggle-color-mode';
+import {ThemeColorMeta} from '@/components/theme-color-meta';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -60,8 +61,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    {media: '(prefers-color-scheme: light)', color: 'white'},
-    {media: '(prefers-color-scheme: dark)', color: 'black'},
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
   ],
 };
 
@@ -83,6 +84,7 @@ export default async function RootLayout({
       disableTransitionOnChange
     >
       <NextIntlClientProvider messages={messages}>
+        <ThemeColorMeta />
         <div className="fixed top-4 right-4 z-50 flex gap-2">
           <LanguageSelect/>
           <ToggleColorMode/>
