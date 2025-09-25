@@ -53,5 +53,25 @@
     "light": "Sáng",
     "dark": "Tối",
     "system": "Hệ thống"
+  },
+  "errorPages": {
+    "home": "Trang chủ",
+    "retry": "Thử lại",
+    "notFound": {
+      "title": "Không tìm thấy trang",
+      "description": "Trang bạn yêu cầu không tồn tại hoặc đã được di chuyển."
+    },
+    "error": {
+      "title": "Đã xảy ra lỗi",
+      "descriptionDefault": "Đã có lỗi xảy ra. Vui lòng thử lại."
+    },
+    "global": {
+      "title": "Lỗi nghiêm trọng",
+      "descriptionDefault": "Đã xảy ra sự cố. Hãy thử tải lại trang."
+    },
+    "forbidden": {
+      "title": "Truy cập bị từ chối",
+      "description": "Bạn không có quyền xem trang này (403)."
+    }
   }
 }

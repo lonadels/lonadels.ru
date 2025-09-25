@@ -53,5 +53,25 @@
     "light": "Terang",
     "dark": "Gelap",
     "system": "Sistem"
+  },
+  "errorPages": {
+    "home": "Beranda",
+    "retry": "Coba lagi",
+    "notFound": {
+      "title": "Halaman tidak ditemukan",
+      "description": "Halaman yang diminta tidak ada atau telah dipindahkan."
+    },
+    "error": {
+      "title": "Terjadi kesalahan",
+      "descriptionDefault": "Terjadi sesuatu yang salah. Silakan coba lagi."
+    },
+    "global": {
+      "title": "Kesalahan kritis",
+      "descriptionDefault": "Terjadi kerusakan. Coba muat ulang halaman."
+    },
+    "forbidden": {
+      "title": "Akses ditolak",
+      "description": "Anda tidak memiliki izin untuk melihat halaman ini (403)."
+    }
   }
 }

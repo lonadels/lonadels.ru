@@ -54,4 +54,25 @@
     "dark": "Dunkel",
     "system": "System"
   }
+,
+  "errorPages": {
+    "home": "Startseite",
+    "retry": "Erneut versuchen",
+    "notFound": {
+      "title": "Seite nicht gefunden",
+      "description": "Die angeforderte Seite existiert nicht oder wurde verschoben."
+    },
+    "error": {
+      "title": "Ein Fehler ist aufgetreten",
+      "descriptionDefault": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+    },
+    "global": {
+      "title": "Kritischer Fehler",
+      "descriptionDefault": "Etwas ist kaputt gegangen. Versuche, die Seite neu zu laden."
+    },
+    "forbidden": {
+      "title": "Zugriff verweigert",
+      "description": "Sie haben keine Berechtigung, diese Seite anzusehen (403)."
+    }
+  }
 }

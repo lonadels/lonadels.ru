@@ -53,5 +53,25 @@
     "light": "Chiaro",
     "dark": "Scuro",
     "system": "Sistema"
+  },
+  "errorPages": {
+    "home": "Home",
+    "retry": "Riprova",
+    "notFound": {
+      "title": "Pagina non trovata",
+      "description": "La pagina richiesta non esiste o è stata spostata."
+    },
+    "error": {
+      "title": "Si è verificato un errore",
+      "descriptionDefault": "Qualcosa è andato storto. Riprova."
+    },
+    "global": {
+      "title": "Errore critico",
+      "descriptionDefault": "Qualcosa si è rotto. Prova a ricaricare la pagina."
+    },
+    "forbidden": {
+      "title": "Accesso negato",
+      "description": "Non hai l'autorizzazione per visualizzare questa pagina (403)."
+    }
   }
 }

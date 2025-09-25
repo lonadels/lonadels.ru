@@ -53,5 +53,25 @@
     "light": "ライト",
     "dark": "ダーク",
     "system": "システム"
+  },
+  "errorPages": {
+    "home": "ホーム",
+    "retry": "再試行",
+    "notFound": {
+      "title": "ページが見つかりません",
+      "description": "要求されたページは存在しないか移動されました。"
+    },
+    "error": {
+      "title": "エラーが発生しました",
+      "descriptionDefault": "問題が発生しました。もう一度お試しください。"
+    },
+    "global": {
+      "title": "重大なエラー",
+      "descriptionDefault": "不具合が発生しました。ページを再読み込みしてください。"
+    },
+    "forbidden": {
+      "title": "アクセスが拒否されました",
+      "description": "このページを表示する権限がありません（403）。"
+    }
   }
 }
