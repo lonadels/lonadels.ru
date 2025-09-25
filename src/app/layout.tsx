@@ -6,6 +6,7 @@ import {ThemeProvider} from '@/components/theme-provider';
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import LanguageSelect from '@/components/language-select';
+import {ToggleColorMode} from '@/components/toggle-color-mode';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -82,8 +83,9 @@ export default async function RootLayout({
       disableTransitionOnChange
     >
       <NextIntlClientProvider messages={messages}>
-        <div className="fixed top-4 right-4 z-50">
-          <LanguageSelect />
+        <div className="fixed top-4 right-4 z-50 flex gap-2">
+          <LanguageSelect/>
+          <ToggleColorMode/>
         </div>
         {children}
         <Toaster/>

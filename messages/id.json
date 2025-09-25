@@ -47,5 +47,11 @@
     "textareaAria": "Kunci VPN",
     "copyAria": "Salin kunci VPN",
     "closeAria": "Tutup dialog"
+  },
+  "theme": {
+    "toggleAria": "Ubah tema",
+    "light": "Terang",
+    "dark": "Gelap",
+    "system": "Sistem"
   }
 }

@@ -47,5 +47,11 @@
     "textareaAria": "VPN कुंजी",
     "copyAria": "VPN कुंजी कॉपी करें",
     "closeAria": "संवाद बंद करें"
+  },
+  "theme": {
+    "toggleAria": "थीम बदलें",
+    "light": "हल्का",
+    "dark": "गहरा",
+    "system": "सिस्टम"
   }
 }

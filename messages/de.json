@@ -47,5 +47,11 @@
     "textareaAria": "VPN-Schlüssel",
     "copyAria": "VPN-Schlüssel kopieren",
     "closeAria": "Dialog schließen"
+  },
+  "theme": {
+    "toggleAria": "Design wechseln",
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System"
   }
 }

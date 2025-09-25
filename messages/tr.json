@@ -47,5 +47,11 @@
     "textareaAria": "VPN anahtarı",
     "copyAria": "VPN anahtarını kopyala",
     "closeAria": "Diyaloğu kapat"
+  },
+  "theme": {
+    "toggleAria": "Tema değiştir",
+    "light": "Açık",
+    "dark": "Koyu",
+    "system": "Sistem"
   }
 }

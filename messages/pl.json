@@ -47,5 +47,11 @@
     "textareaAria": "Klucz VPN",
     "copyAria": "Skopiuj klucz VPN",
     "closeAria": "Zamknij okno dialogowe"
+  },
+  "theme": {
+    "toggleAria": "Zmień motyw",
+    "light": "Jasny",
+    "dark": "Ciemny",
+    "system": "Systemowy"
   }
 }

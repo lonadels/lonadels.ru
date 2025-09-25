@@ -16,16 +16,15 @@ export default function LanguageSelect() {
   const handleChange = useCallback((value: string) => {
     const v = (value as Locale);
     try {
-      // 400 days
-      const maxAge = 60 * 60 * 24 * 400;
+      const maxAge = 60 * 60 * 24 * 365;
       document.cookie = `locale=${v}; path=/; max-age=${maxAge}`;
     } finally {
-      // Reload to fetch new messages on server
       window.location.reload();
     }
   }, []);
 
   return (
+
     <Select value={locale} onValueChange={handleChange}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Language" />

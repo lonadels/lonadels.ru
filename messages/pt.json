@@ -47,5 +47,11 @@
     "textareaAria": "Chave VPN",
     "copyAria": "Copiar chave VPN",
     "closeAria": "Fechar diálogo"
+  },
+  "theme": {
+    "toggleAria": "Alterar tema",
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Sistema"
   }
 }

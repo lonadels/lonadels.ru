@@ -47,5 +47,11 @@
     "textareaAria": "VPN kaliti",
     "copyAria": "VPN kalitini nusxalash",
     "closeAria": "Dialogni yopish"
+  },
+  "theme": {
+    "toggleAria": "Mavzuni o‘zgartirish",
+    "light": "Yorug‘",
+    "dark": "Qorong‘i",
+    "system": "Tizim"
   }
 }

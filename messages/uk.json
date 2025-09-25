@@ -47,5 +47,11 @@
     "textareaAria": "VPN-ключ",
     "copyAria": "Скопіювати VPN-ключ",
     "closeAria": "Закрити діалог"
+  },
+  "theme": {
+    "toggleAria": "Змінити тему",
+    "light": "Світла",
+    "dark": "Темна",
+    "system": "Системна"
   }
 }

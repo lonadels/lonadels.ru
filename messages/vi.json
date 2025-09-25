@@ -47,5 +47,11 @@
     "textareaAria": "Khóa VPN",
     "copyAria": "Sao chép khóa VPN",
     "closeAria": "Đóng hộp thoại"
+  },
+  "theme": {
+    "toggleAria": "Đổi giao diện",
+    "light": "Sáng",
+    "dark": "Tối",
+    "system": "Hệ thống"
   }
 }

@@ -47,5 +47,11 @@
     "textareaAria": "VPN 密钥",
     "copyAria": "复制 VPN 密钥",
     "closeAria": "关闭对话框"
+  },
+  "theme": {
+    "toggleAria": "切换主题",
+    "light": "浅色",
+    "dark": "深色",
+    "system": "系统"
   }
 }

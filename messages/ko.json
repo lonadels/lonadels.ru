@@ -47,5 +47,11 @@
     "textareaAria": "VPN 키",
     "copyAria": "VPN 키 복사",
     "closeAria": "대화 상자 닫기"
+  },
+  "theme": {
+    "toggleAria": "테마 전환",
+    "light": "라이트",
+    "dark": "다크",
+    "system": "시스템"
   }
 }

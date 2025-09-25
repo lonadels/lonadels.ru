@@ -47,5 +47,11 @@
     "textareaAria": "مفتاح VPN",
     "copyAria": "نسخ مفتاح VPN",
     "closeAria": "إغلاق الحوار"
+  },
+  "theme": {
+    "toggleAria": "تبديل السمة",
+    "light": "فاتح",
+    "dark": "داكن",
+    "system": "النظام"
   }
 }
