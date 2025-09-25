@@ -14,11 +14,6 @@ export function ThemeColorMeta() {
       const head = document.head
       if (!head || !head.isConnected) return
 
-      head.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]').forEach((el) => {
-        if (el.id !== id && el.parentNode && (el as HTMLMetaElement).isConnected && 'removeChild' in el.parentNode) {
-          el.parentNode?.removeChild(el)
-        }
-      })
 
       const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
       const currentTheme = resolvedTheme ?? (prefersDark ? 'dark' : 'light')
