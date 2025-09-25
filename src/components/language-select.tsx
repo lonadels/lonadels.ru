@@ -1,12 +1,16 @@
 'use client';
 
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from '@/components/ui/select';
+import { Skeleton } from '@/components/ui/skeleton';
 import {LOCALE_LABELS, SUPPORTED, type Locale} from '@/i18n/locales';
 import {useLocale} from 'next-intl';
-import {useCallback, useMemo} from 'react';
+import {useCallback, useEffect, useMemo, useState} from 'react';
 
 export default function LanguageSelect() {
-  const locale = useLocale() as Locale;
+  const locale = useLocale();
+
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const items = useMemo(() => SUPPORTED.map((code) => ({
     code,
@@ -23,9 +27,13 @@ export default function LanguageSelect() {
     }
   }, []);
 
-  return (
+  const isKnownLocale = SUPPORTED.includes(locale as Locale);
+  if (!mounted || !isKnownLocale || items.length === 0) {
+    return <Skeleton className="h-9 w-[180px]" />;
+  }
 
-    <Select value={locale} onValueChange={handleChange}>
+  return (
+    <Select key={locale} value={locale as Locale} onValueChange={handleChange}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Language" />
       </SelectTrigger>
