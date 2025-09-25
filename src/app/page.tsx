@@ -63,7 +63,7 @@ export default function Home() {
       <main className="flex flex-col gap-2 row-start-2 items-center">
         <Button variant={'outline'} onClick={handleButtonClick} aria-busy={loading} disabled={loading}
                 size="lg" className={'font-semibold gap-2'}>
-          {loading ? <LoaderCircle className="animate-spin w-6 h-6"/> : <GlobeLock className="w-6 h-6"/>}
+          {loading ? <LoaderCircle className="animate-spin"/> : <GlobeLock className="w-6 h-6"/>}
           {t('home.getKey')}
         </Button>
         <HowToUse/>
