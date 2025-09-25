@@ -1,5 +1,6 @@
 {
   "name": "Lonadels",
+  "description": "Веб‑приложение для выдачи временных ключей доступа к Outline",
   "short_name": "Lonadels",
   "icons": [
     {

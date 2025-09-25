@@ -1,10 +1,10 @@
-import type {Metadata, Viewport} from 'next';
+import type {Metadata} from 'next';
 import {Geist, Geist_Mono} from 'next/font/google';
 import './globals.css';
 import {Toaster} from '@/components/ui/sonner';
 import {ThemeProvider} from '@/components/theme-provider';
 import {NextIntlClientProvider} from 'next-intl';
-import {getMessages, getTranslations, getLocale} from 'next-intl/server';
+import {getLocale, getMessages, getTranslations} from 'next-intl/server';
 import LanguageSelect from '@/components/language-select';
 import {ToggleColorMode} from '@/components/toggle-color-mode';
 import {ThemeColorMeta} from '@/components/theme-color-meta';
@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 const APP_NAME = 'Lonadels';
 const APP_DEFAULT_TITLE = 'Lonadels';
 const APP_TITLE_TEMPLATE = '%s - Lonadels';
-const APP_DESCRIPTION = 'Сайт Lonadels';
+const APP_DESCRIPTION = 'Веб‑приложение для выдачи временных ключей доступа к Outline';
 
 export const metadata: Metadata = {
   applicationName: APP_NAME,
@@ -82,7 +82,7 @@ export default async function RootLayout({
       disableTransitionOnChange
     >
       <NextIntlClientProvider messages={messages}>
-        <ThemeColorMeta />
+        <ThemeColorMeta/>
         <div className="fixed top-4 right-4 z-50 flex gap-2">
           <LanguageSelect/>
           <ToggleColorMode/>
@@ -90,7 +90,7 @@ export default async function RootLayout({
         {children}
         {version && (
           <footer className="fixed bottom-4 left-1/2 -translate-x-1/2 text-xs text-muted-foreground">
-            {t('common.version', { version: String(version) })}
+            {t('common.version', {version: String(version)})}
           </footer>
         )}
         <Toaster/>

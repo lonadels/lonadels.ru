@@ -18,12 +18,12 @@ export default function GlobalError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  const [locale, setLocale] = useState<'ru' | 'en' | 'es'>('ru');
+  const [locale, setLocale] = useState<'ru' | 'en'>('ru');
 
   useEffect(() => {
     const fromCookie = getCookie('locale');
-    if (fromCookie && ['ru', 'en', 'es'].includes(fromCookie)) {
-      setLocale(fromCookie as 'ru' | 'en' | 'es');
+    if (fromCookie && ['ru', 'en'].includes(fromCookie)) {
+      setLocale(fromCookie as 'ru' | 'en');
     }
   }, []);
 
@@ -40,12 +40,6 @@ export default function GlobalError({
       retry: 'Retry',
       home: 'Home'
     },
-    es: {
-      title: 'Error crítico',
-      defaultDesc: 'Algo se rompió. Intenta recargar la página.',
-      retry: 'Reintentar',
-      home: 'Inicio'
-    }
   } as const), []);
 
   const t = dict[locale] || dict.ru;
