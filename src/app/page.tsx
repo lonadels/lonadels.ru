@@ -54,7 +54,7 @@ export default function Home() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [t]);
 
   return (
     <div
