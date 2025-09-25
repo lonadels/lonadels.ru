@@ -4,7 +4,7 @@ import './globals.css';
 import {Toaster} from '@/components/ui/sonner';
 import {ThemeProvider} from '@/components/theme-provider';
 import {NextIntlClientProvider} from 'next-intl';
-import {getMessages, getTranslations} from 'next-intl/server';
+import {getMessages, getTranslations, getLocale} from 'next-intl/server';
 import LanguageSelect from '@/components/language-select';
 import {ToggleColorMode} from '@/components/toggle-color-mode';
 import {ThemeColorMeta} from '@/components/theme-color-meta';
@@ -73,9 +73,10 @@ export default async function RootLayout({
 }>) {
   const messages = await getMessages();
   const t = await getTranslations();
+  const locale = await getLocale();
   const version = process.env.version;
   return (
-    <html dir="ltr" suppressHydrationWarning>
+    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'} suppressHydrationWarning>
     <body
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >

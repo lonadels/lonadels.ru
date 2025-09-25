@@ -30,7 +30,7 @@ export default function HowToUse() {
   const triggerButton = <Button variant="link">{t('howToUse.trigger')}</Button>;
   const title = t('howToUse.title');
   const description = (
-    <div className="space-y-3 text-left">
+    <div className="space-y-3 text-start">
       <ol className="list-decimal list-inside space-y-2 leading-relaxed">
         <li>
           {t('howToUse.steps.one.textBefore')} {' '}
@@ -65,7 +65,7 @@ export default function HowToUse() {
           {triggerButton}
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
+          <DialogHeader className="text-start">
             <DialogTitle>{title}</DialogTitle>
             <DialogDescription>{description}</DialogDescription>
           </DialogHeader>
@@ -79,7 +79,7 @@ export default function HowToUse() {
         {triggerButton}
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader className="text-left">
+        <DrawerHeader className="text-start">
           <DrawerTitle>{title}</DrawerTitle>
           <DrawerDescription>{description}</DrawerDescription>
         </DrawerHeader>
