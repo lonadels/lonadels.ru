@@ -3,7 +3,7 @@
 import React, {useRef} from 'react';
 import {
   AlertDialog,
-  AlertDialogAction,
+  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
@@ -51,10 +51,10 @@ const dialog = createOverlay<DialogProps>(
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter className={'flex flex-col'}>
-            <Button type="button" variant="secondary" onClick={handleCopy} aria-label={t('dialog.copyAria')}>
+            <AlertDialogCancel aria-label={t('dialog.closeAria')}>{t('common.close')}</AlertDialogCancel>
+            <Button type="button" variant="default" onClick={handleCopy} aria-label={t('dialog.copyAria')}>
               {t('common.copy')}
             </Button>
-            <AlertDialogAction aria-label={t('dialog.closeAria')}>{t('common.close')}</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
