@@ -16,9 +16,11 @@ import axios from 'axios';
 
 interface ProxyKeyFullProps {
   uuid: string;
+  initial?: GetProxyKeyResponse | null;
+  serverError?: string | null;
 }
 
-export default function ProxyKeyFull({uuid}: ProxyKeyFullProps) {
+export default function ProxyKeyFull({uuid, initial = null, serverError = null}: ProxyKeyFullProps) {
   const router = useRouter();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -27,11 +29,13 @@ export default function ProxyKeyFull({uuid}: ProxyKeyFullProps) {
   const dfLocale = getDateFnsLocale(currentLocale);
   const connector = getDateTimeConnector(currentLocale);
 
-  const [proxyKey, setProxyKey] = useState<GetProxyKeyResponse | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [proxyKey, setProxyKey] = useState<GetProxyKeyResponse | null>(initial);
+  const [error, setError] = useState<string | null>(serverError || null);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
+      if (initial || serverError) return;
+
       getProxyKey(uuid)
         .then(data => {
           setProxyKey(data);
@@ -41,7 +45,7 @@ export default function ProxyKeyFull({uuid}: ProxyKeyFullProps) {
           setError(error.message);
         });
     },
-    [uuid],
+    [uuid, initial, serverError],
   );
 
   const handleGetNew = useCallback(() => {
