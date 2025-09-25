@@ -12,7 +12,7 @@ export async function GET(request: Request, { params }: Params) {
   try {
     const data = await getProxyKeyFromDB(uuid);
     return NextResponse.json(data satisfies GetProxyKeyResponse, { status: 200 });
-  } catch (e) {
+  } catch {
     return NextResponse.json({ message: 'Invalid proxy key uuid' } satisfies ApiErrorResponse, { status: 400 });
   }
 }
