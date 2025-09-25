@@ -1,0 +1,115 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "lonadels.ru API",
+    "version": "1.0.0",
+    "description": "OpenAPI specification for lonadels.ru API endpoints."
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Current server"
+    }
+  ],
+  "paths": {
+    "/api/createProxyKey": {
+      "post": {
+        "summary": "Create Outline proxy access key",
+        "description": "Creates a new Outline access key and returns its access URL. Rate-limited by client IP.",
+        "responses": {
+          "200": {
+            "description": "Access key created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateProxyKeyResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "headers": {
+              "Retry-After": { "description": "Seconds to wait before retrying", "schema": { "type": "string" } },
+              "X-RateLimit-Limit": { "description": "Request limit in the current window", "schema": { "type": "string" } },
+              "X-RateLimit-Remaining": { "description": "Requests remaining in current window", "schema": { "type": "string" } },
+              "X-RateLimit-Reset": { "description": "Unix time when the window resets (seconds)", "schema": { "type": "string" } }
+            },
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/clearAllProxyKeys": {
+      "post": {
+        "summary": "Clear all Outline proxy access keys",
+        "description": "Administrative endpoint to revoke all Outline access keys. Requires x-api-key header.",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "schema": { "type": "string" },
+            "required": true,
+            "description": "Administrative API key"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All keys have been revoked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "success": { "type": "integer", "example": 1 } },
+                  "required": ["success"]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "error": { "type": "string", "example": "Unauthorized" } },
+                  "required": ["error"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateProxyKeyResponse": {
+        "type": "object",
+        "properties": {
+          "accessUrl": { "type": "string", "description": "Outline access URL", "example": "ss://..." }
+        },
+        "required": ["accessUrl"]
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "message": { "type": "string", "example": "Too many requests" }
+        },
+        "required": ["message"]
+      }
+    }
+  }
+}
