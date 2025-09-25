@@ -168,7 +168,36 @@ docker compose up -d main-app --force-recreate
 - Для локальной разработки избегайте хранения реальных секретов в репозитории; используйте `.env.local` и переменные окружения.
 
 ## Swagger / OpenAPI
-- Живая документация: откройте /api/docs (например, http://localhost:3000/api/docs)
-- JSON‑схема OpenAPI: /openapi.json (http://localhost:3000/openapi.json)
+- Живая документация (Swagger UI): /api/docs
+  - Локально: http://localhost:3000/api/docs
+- JSON‑спецификация OpenAPI: /openapi.json
+  - Локально: http://localhost:3000/openapi.json
 
-Документация собирается без дополнительных зависимостей через Swagger UI (CDN) и описывает существующие endpoints (/api/createProxyKey и /api/clearAllProxyKeys). Спецификация вынесена в отдельный файл public\\openapi.json; маршрут /api/openapi сохраняется и делает редирект на /openapi.json.
+### Как это устроено
+- Спецификация лежит в public\\openapi.json.
+- Swagger UI отдаётся маршрутом src\\app\\api\\docs\\route.ts и использует CDN (swagger-ui-dist) с ссылкой на /openapi.json.
+- Никаких дополнительных зависимостей в проект не добавлено.
+
+### Как обновлять спецификацию
+1) Добавьте/измените endpoint в public\\openapi.json в секции paths. Пример для закрытого эндпоинта с заголовком x-api-key:
+{
+  "paths": {
+    "/api/clearAllProxyKeys": {
+      "post": {
+        "security": [{"ApiKeyAuth": []}],
+        "responses": {"204": {"description": "No Content"}}
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": { "type": "apiKey", "in": "header", "name": "x-api-key" }
+    }
+  }
+}
+2) При добавлении новых ручек опишите запрос/ответ (schemas) в components/schemas при необходимости.
+3) Для разных окружений можно задать servers в корне openapi.json, например:
+"servers": [
+  {"url": "http://localhost:3000", "description": "Local"},
+  {"url": "https://lonadels.ru", "description": "Production"}
+]
