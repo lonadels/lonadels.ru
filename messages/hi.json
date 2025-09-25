@@ -2,10 +2,14 @@
   "common": {
     "version": "संस्करण {version}",
     "close": "बंद करें",
-    "copy": "कॉपी करें"
+    "copy": "कॉपी करें",
+    "back": "वापस",
+    "backAria": "वापस जाएँ",
+    "loading": "लोड हो रहा है"
   },
   "home": {
-    "getKey": "VPN कुंजी प्राप्त करें"
+    "getKey": "VPN कुंजी प्राप्त करें",
+    "getNewKey": "नई VPN कुंजी प्राप्त करें"
   },
   "toasts": {
     "copied": {
@@ -25,6 +29,11 @@
       "failedToGetKey": "VPN कुंजी प्राप्त करने में विफल"
     }
   },
+  "alerts": {
+    "errors": {
+      "title": "एक त्रुटि हुई"
+    }
+  },
   "howToUse": {
     "trigger": "कैसे उपयोग करें",
     "title": "निर्देश",
@@ -41,6 +50,11 @@
       },
       "three": "इस वेबसाइट पर \"VPN कुंजी प्राप्त करें\" बटन पर क्लिक करने के बाद आपको मिली एक्सेस कुंजी दर्ज करें।"
     }
+  },
+  "fullKeyPage": {
+    "title": "आपकी VPN कुंजी",
+    "textareaAria": "VPN कुंजी",
+    "copyAria": "VPN कुंजी कॉपी करें"
   },
   "dialog": {
     "title": "आपकी VPN कुंजी",

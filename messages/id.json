@@ -2,10 +2,14 @@
   "common": {
     "version": "Versi {version}",
     "close": "Tutup",
-    "copy": "Salin"
+    "copy": "Salin",
+    "back": "Kembali",
+    "backAria": "Kembali",
+    "loading": "Memuat"
   },
   "home": {
-    "getKey": "Dapatkan kunci VPN"
+    "getKey": "Dapatkan kunci VPN",
+    "getNewKey": "Dapatkan kunci VPN baru"
   },
   "toasts": {
     "copied": {
@@ -25,6 +29,11 @@
       "failedToGetKey": "Gagal mendapatkan kunci VPN"
     }
   },
+  "alerts": {
+    "errors": {
+      "title": "Terjadi kesalahan"
+    }
+  },
   "howToUse": {
     "trigger": "Cara menggunakan",
     "title": "Instruksi",
@@ -41,6 +50,11 @@
       },
       "three": "Masukkan kunci akses yang Anda terima setelah mengklik tombol \"Dapatkan kunci VPN\" di situs ini."
     }
+  },
+  "fullKeyPage": {
+    "title": "Kunci VPN Anda",
+    "textareaAria": "Kunci VPN",
+    "copyAria": "Salin kunci VPN"
   },
   "dialog": {
     "title": "Kunci VPN Anda",

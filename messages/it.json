@@ -2,10 +2,14 @@
   "common": {
     "version": "Versione {version}",
     "close": "Chiudi",
-    "copy": "Copia"
+    "copy": "Copia",
+    "back": "Indietro",
+    "backAria": "Torna indietro",
+    "loading": "Caricamento"
   },
   "home": {
-    "getKey": "Ottieni chiave VPN"
+    "getKey": "Ottieni chiave VPN",
+    "getNewKey": "Ottieni una nuova chiave VPN"
   },
   "toasts": {
     "copied": {
@@ -25,6 +29,11 @@
       "failedToGetKey": "Impossibile ottenere la chiave VPN"
     }
   },
+  "alerts": {
+    "errors": {
+      "title": "Si è verificato un errore"
+    }
+  },
   "howToUse": {
     "trigger": "Come usare",
     "title": "Istruzioni",
@@ -41,6 +50,11 @@
       },
       "three": "Inserisci la chiave di accesso ricevuta dopo aver fatto clic sul pulsante \"Ottieni chiave VPN\" su questo sito."
     }
+  },
+  "fullKeyPage": {
+    "title": "La tua chiave VPN",
+    "textareaAria": "Chiave VPN",
+    "copyAria": "Copia chiave VPN"
   },
   "dialog": {
     "title": "La tua chiave VPN",

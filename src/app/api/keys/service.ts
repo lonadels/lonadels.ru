@@ -4,10 +4,11 @@ import type {ProxyKey} from '@prisma/client';
 import { HttpError } from '@/lib/httpError';
 import {
   connectDeviceToProxyKey,
-  createProxyKeyWithDevice,
+  createProxyKeyWithDevice, deleteProxyKeysByIds,
   findAvailableProxyKeyForDevice,
   upsertDevice,
 } from './repository';
+import {AccessKey} from 'outlinevpn-api';
 
 export async function createProxyKeyForIp(ip: string | null): Promise<ProxyKey> {
   if (!isValidIP(ip))
@@ -23,9 +24,21 @@ export async function createProxyKeyForIp(ip: string | null): Promise<ProxyKey> 
   if (proxyKey) {
     proxyKey = await connectDeviceToProxyKey(proxyKey.id, device.id);
   } else {
-    const {accessUrl} = await vpn.createAccessKey();
-    proxyKey = await createProxyKeyWithDevice(accessUrl, device.id);
+    const {id, accessUrl} = await vpn.createAccessKey();
+    proxyKey = await createProxyKeyWithDevice(id, accessUrl, device.id);
   }
 
   return proxyKey;
+}
+
+export async function clearAllProxyKeys(): Promise<void> {
+  const {accessKeys} = (await vpn.getAccessKeys()) as unknown as { accessKeys: AccessKey[] };
+
+  const deletions = accessKeys.map(k => vpn.deleteAccessKey(k.id));
+  await Promise.allSettled(deletions);
+
+  const ids = accessKeys.map((key) => key.id);
+  if (ids.length > 0) {
+    await deleteProxyKeysByIds(ids);
+  }
 }

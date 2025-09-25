@@ -2,10 +2,14 @@
   "common": {
     "version": "Sürüm {version}",
     "close": "Kapat",
-    "copy": "Kopyala"
+    "copy": "Kopyala",
+    "back": "Geri",
+    "backAria": "Geri git",
+    "loading": "Yükleniyor"
   },
   "home": {
-    "getKey": "VPN anahtarı al"
+    "getKey": "VPN anahtarı al",
+    "getNewKey": "Yeni VPN anahtarı al"
   },
   "toasts": {
     "copied": {
@@ -25,6 +29,11 @@
       "failedToGetKey": "VPN anahtarı alınamadı"
     }
   },
+  "alerts": {
+    "errors": {
+      "title": "Bir hata oluştu"
+    }
+  },
   "howToUse": {
     "trigger": "Nasıl kullanılır",
     "title": "Talimatlar",
@@ -41,6 +50,11 @@
       },
       "three": "Bu sitede \"VPN anahtarı al\" düğmesine tıkladıktan sonra aldığınız erişim anahtarını girin."
     }
+  },
+  "fullKeyPage": {
+    "title": "VPN anahtarınız",
+    "textareaAria": "VPN anahtarı",
+    "copyAria": "VPN anahtarını kopyala"
   },
   "dialog": {
     "title": "VPN anahtarınız",

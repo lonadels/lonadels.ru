@@ -2,10 +2,14 @@
   "common": {
     "version": "Phiên bản {version}",
     "close": "Đóng",
-    "copy": "Sao chép"
+    "copy": "Sao chép",
+    "back": "Quay lại",
+    "backAria": "Quay lại",
+    "loading": "Đang tải"
   },
   "home": {
-    "getKey": "Lấy khóa VPN"
+    "getKey": "Lấy khóa VPN",
+    "getNewKey": "Lấy khóa VPN mới"
   },
   "toasts": {
     "copied": {
@@ -25,6 +29,11 @@
       "failedToGetKey": "Không thể lấy khóa VPN"
     }
   },
+  "alerts": {
+    "errors": {
+      "title": "Đã xảy ra lỗi"
+    }
+  },
   "howToUse": {
     "trigger": "Cách sử dụng",
     "title": "Hướng dẫn",
@@ -41,6 +50,11 @@
       },
       "three": "Nhập khóa truy cập bạn nhận được sau khi nhấp nút \"Lấy khóa VPN\" trên trang web này."
     }
+  },
+  "fullKeyPage": {
+    "title": "Khóa VPN của bạn",
+    "textareaAria": "Khóa VPN",
+    "copyAria": "Sao chép khóa VPN"
   },
   "dialog": {
     "title": "Khóa VPN của bạn",

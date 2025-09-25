@@ -2,10 +2,14 @@
   "common": {
     "version": "버전 {version}",
     "close": "닫기",
-    "copy": "복사"
+    "copy": "복사",
+    "back": "뒤로",
+    "backAria": "뒤로 가기",
+    "loading": "로딩 중"
   },
   "home": {
-    "getKey": "VPN 키 받기"
+    "getKey": "VPN 키 받기",
+    "getNewKey": "새 VPN 키 받기"
   },
   "toasts": {
     "copied": {
@@ -25,6 +29,11 @@
       "failedToGetKey": "VPN 키를 가져오지 못했습니다"
     }
   },
+  "alerts": {
+    "errors": {
+      "title": "오류가 발생했습니다"
+    }
+  },
   "howToUse": {
     "trigger": "사용 방법",
     "title": "단계",
@@ -41,6 +50,11 @@
       },
       "three": "이 사이트에서 ‘VPN 키 받기’ 버튼을 눌러 받은 액세스 키를 입력하세요."
     }
+  },
+  "fullKeyPage": {
+    "title": "당신의 VPN 키",
+    "textareaAria": "VPN 키",
+    "copyAria": "VPN 키 복사"
   },
   "dialog": {
     "title": "당신의 VPN 키",

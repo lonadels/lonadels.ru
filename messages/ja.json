@@ -2,10 +2,14 @@
   "common": {
     "version": "バージョン {version}",
     "close": "閉じる",
-    "copy": "コピー"
+    "copy": "コピー",
+    "back": "戻る",
+    "backAria": "戻る",
+    "loading": "読み込み中"
   },
   "home": {
-    "getKey": "VPNキーを取得"
+    "getKey": "VPNキーを取得",
+    "getNewKey": "新しいVPNキーを取得"
   },
   "toasts": {
     "copied": {
@@ -25,6 +29,11 @@
       "failedToGetKey": "VPNキーの取得に失敗しました"
     }
   },
+  "alerts": {
+    "errors": {
+      "title": "エラーが発生しました"
+    }
+  },
   "howToUse": {
     "trigger": "使い方",
     "title": "手順",
@@ -41,6 +50,11 @@
       },
       "three": "本サイトの「VPNキーを取得」ボタンをクリックして受け取ったアクセスキーを入力してください。"
     }
+  },
+  "fullKeyPage": {
+    "title": "あなたのVPNキー",
+    "textareaAria": "VPNキー",
+    "copyAria": "VPNキーをコピー"
   },
   "dialog": {
     "title": "あなたのVPNキー",

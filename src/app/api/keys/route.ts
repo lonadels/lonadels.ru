@@ -1,6 +1,6 @@
 import {NextResponse} from 'next/server';
 import {headers} from 'next/headers';
-import {createProxyKeyForIp} from './service';
+import {clearAllProxyKeys, createProxyKeyForIp} from './service';
 import {HttpError} from '@/lib/httpError';
 import {extractClientIp} from '@/lib/utils';
 import {CreateProxyKeyResponse} from '@/lib/types';
@@ -38,10 +38,25 @@ export async function POST() {
 
   try {
     const proxyKey = await createProxyKeyForIp(ip);
-    return NextResponse.json({accessUrl: proxyKey.accessUrl} satisfies CreateProxyKeyResponse, {status: 200});
+    return NextResponse.json({uuid: proxyKey.uuid, accessUrl: proxyKey.accessUrl, createdAt: proxyKey.createdAt} satisfies CreateProxyKeyResponse, {status: 200});
   } catch (e) {
     const status = (e instanceof HttpError) ? e.status : 500;
     const message = (e instanceof HttpError) ? e?.message : 'Internal Server Error';
     return NextResponse.json({message}, {status});
   }
+}
+
+
+export async function DELETE() {
+  const headersList = await headers();
+  const apiKey = headersList.get('x-api-key');
+  const expectedApiKey = process.env.API_KEY;
+
+  if (!apiKey || apiKey !== expectedApiKey) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  await clearAllProxyKeys();
+
+  return NextResponse.json({ success: 1 }, { status: 200 });
 }

@@ -2,10 +2,14 @@
   "common": {
     "version": "الإصدار {version}",
     "close": "إغلاق",
-    "copy": "نسخ"
+    "copy": "نسخ",
+    "back": "الرجوع",
+    "backAria": "الرجوع للخلف",
+    "loading": "جارٍ التحميل"
   },
   "home": {
-    "getKey": "الحصول على مفتاح VPN"
+    "getKey": "الحصول على مفتاح VPN",
+    "getNewKey": "الحصول على مفتاح VPN جديد"
   },
   "toasts": {
     "copied": {
@@ -25,6 +29,11 @@
       "failedToGetKey": "فشل في الحصول على مفتاح VPN"
     }
   },
+  "alerts": {
+    "errors": {
+      "title": "حدث خطأ"
+    }
+  },
   "howToUse": {
     "trigger": "كيفية الاستخدام",
     "title": "التعليمات",
@@ -41,6 +50,11 @@
       },
       "three": "أدخل مفتاح الوصول الذي حصلت عليه بعد النقر على زر \"الحصول على مفتاح VPN\" في هذا الموقع."
     }
+  },
+  "fullKeyPage": {
+    "title": "مفتاح VPN الخاص بك",
+    "textareaAria": "مفتاح VPN",
+    "copyAria": "نسخ مفتاح VPN"
   },
   "dialog": {
     "title": "مفتاح VPN الخاص بك",

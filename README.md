@@ -10,8 +10,8 @@ Prisma для учёта устройств (по IP) и выданных клю
 - Next.js (App Router), React 19, Tailwind CSS.
 - Prisma ORM + PostgreSQL 16.
 - Интеграция с Outline API (outlinevpn-api).
-- Rate limit: 3 запроса на IP в минуту, 10 за 6 часов и 30 за 24 часа для `POST /api/createProxyKey`.
-- Защищённый endpoint `POST /api/clearAllProxyKeys` с заголовком `x-api-key`.
+- Rate limit: 3 запроса на IP в минуту, 10 за 6 часов и 30 за 24 часа для `POST /api/keys`.
+- Защищённый endpoint `DELETE /api/keys` с заголовком `x-api-key`.
 - Dockerfile со сборкой в режиме standalone, docker-compose с nginx, certbot, registry, postgres.
 - CI/CD: GitHub Actions собирает образ и деплоит на self‑hosted сервер (см. `.github/workflows/workflow.yml`).
 
@@ -96,7 +96,7 @@ Prisma для учёта устройств (по IP) и выданных клю
 - OUTLINE_API_URL — URL API сервера Outline (включая секретный сегмент)
 - OUTLINE_FINGERPRINT — TLS fingerprint сервера Outline
 - HOST_IP — IP сервера, с которого идут запросы изнутри VPN; такие запросы блокируются
-- API_KEY — секрет для `POST /api/clearAllProxyKeys`
+- API_KEY — секрет для `DELETE /api/keys`
 
 Примечание: не коммитьте реальные секреты в репозиторий. Используйте `.env.local` и секреты GitHub/CI.
 
@@ -124,13 +124,17 @@ Prisma для учёта устройств (по IP) и выданных клю
 
 ## API
 
-- POST /api/createProxyKey
-  - Возвращает `{ accessUrl: string }`.
+- POST /api/keys
+  - Возвращает `{ uuid: string, accessUrl: string }`.
   - Rate limit: 3 в минуту, 10 за 6 часов и 30 за 24 часа на IP (заголовки X-RateLimit-*, Retry-After).
   - Внутри: привязка устройства по IP, повторная выдача свободного ключа либо создание нового через Outline API.
   - Ошибки: 400 (неверный IP), 403 (запрос из VPN — совпадает с HOST_IP), 429, 500 и т.д.
 
-- POST /api/clearAllProxyKeys
+- GET /api/keys/{uuid}
+  - Возвращает `{ accessUrl: string, createdAt: string }` (ISO 8601).
+  - Ошибки: 400 (неверный UUID).
+
+- DELETE /api/keys
   - Требует заголовок `x-api-key: <API_KEY>`.
   - Удаляет все access keys на Outline и синхронизирует базу (удаляет записи по accessUrl).
   - Для внутренних задач/обслуживания; не предназначен для публичного вызова.

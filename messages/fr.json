@@ -2,10 +2,14 @@
   "common": {
     "version": "Version {version}",
     "close": "Fermer",
-    "copy": "Copier"
+    "copy": "Copier",
+    "back": "Retour",
+    "backAria": "Revenir en arrière",
+    "loading": "Chargement"
   },
   "home": {
-    "getKey": "Obtenir une clé VPN"
+    "getKey": "Obtenir une clé VPN",
+    "getNewKey": "Obtenir une nouvelle clé VPN"
   },
   "toasts": {
     "copied": {
@@ -25,6 +29,11 @@
       "failedToGetKey": "Échec de l'obtention de la clé VPN"
     }
   },
+  "alerts": {
+    "errors": {
+      "title": "Une erreur s'est produite"
+    }
+  },
   "howToUse": {
     "trigger": "Comment utiliser",
     "title": "Instructions",
@@ -41,6 +50,11 @@
       },
       "three": "Saisissez la clé d'accès reçue après avoir cliqué sur le bouton « Obtenir une clé VPN » sur ce site."
     }
+  },
+  "fullKeyPage": {
+    "title": "Votre clé VPN",
+    "textareaAria": "Clé VPN",
+    "copyAria": "Copier la clé VPN"
   },
   "dialog": {
     "title": "Votre clé VPN",

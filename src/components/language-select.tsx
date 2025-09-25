@@ -23,6 +23,7 @@ export default function LanguageSelect() {
       const maxAge = 60 * 60 * 24 * 365;
       document.cookie = `locale=${v}; path=/; max-age=${maxAge}`;
     } finally {
+      setMounted(false);
       window.location.reload();
     }
   }, []);

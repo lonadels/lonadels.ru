@@ -2,10 +2,14 @@
   "common": {
     "version": "Version {version}",
     "close": "Schließen",
-    "copy": "Kopieren"
+    "copy": "Kopieren",
+    "back": "Zurück",
+    "backAria": "Zurück gehen",
+    "loading": "Wird geladen"
   },
   "home": {
-    "getKey": "VPN-Schlüssel erhalten"
+    "getKey": "VPN-Schlüssel erhalten",
+    "getNewKey": "Neuen VPN‑Schlüssel erhalten"
   },
   "toasts": {
     "copied": {
@@ -25,6 +29,11 @@
       "failedToGetKey": "VPN-Schlüssel konnte nicht abgerufen werden"
     }
   },
+  "alerts": {
+    "errors": {
+      "title": "Ein Fehler ist aufgetreten"
+    }
+  },
   "howToUse": {
     "trigger": "Wie verwenden",
     "title": "Anleitung",
@@ -41,6 +50,11 @@
       },
       "three": "Geben Sie den Zugriffsschlüssel ein, den Sie nach dem Klicken auf die Schaltfläche „VPN-Schlüssel erhalten“ auf dieser Website erhalten haben."
     }
+  },
+  "fullKeyPage": {
+    "title": "Ihr VPN-Schlüssel",
+    "textareaAria": "VPN-Schlüssel",
+    "copyAria": "VPN-Schlüssel kopieren"
   },
   "dialog": {
     "title": "Ihr VPN-Schlüssel",

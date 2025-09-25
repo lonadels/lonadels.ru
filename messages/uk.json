@@ -2,10 +2,14 @@
   "common": {
     "version": "Версія {version}",
     "close": "Закрити",
-    "copy": "Скопіювати"
+    "copy": "Скопіювати",
+    "back": "Назад",
+    "backAria": "Повернутися назад",
+    "loading": "Завантаження"
   },
   "home": {
-    "getKey": "Отримати VPN-ключ"
+    "getKey": "Отримати VPN-ключ",
+    "getNewKey": "Отримати новий VPN‑ключ"
   },
   "toasts": {
     "copied": {
@@ -25,6 +29,11 @@
       "failedToGetKey": "Не вдалося отримати VPN-ключ"
     }
   },
+  "alerts": {
+    "errors": {
+      "title": "Виникла помилка"
+    }
+  },
   "howToUse": {
     "trigger": "Як користуватися",
     "title": "Інструкція",
@@ -41,6 +50,11 @@
       },
       "three": "Введіть ключ доступу, отриманий після натискання кнопки «Отримати VPN‑ключ» на цьому сайті."
     }
+  },
+  "fullKeyPage": {
+    "title": "Ваш VPN-ключ",
+    "textareaAria": "VPN-ключ",
+    "copyAria": "Скопіювати VPN-ключ"
   },
   "dialog": {
     "title": "Ваш VPN-ключ",

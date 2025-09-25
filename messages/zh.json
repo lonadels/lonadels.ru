@@ -2,10 +2,14 @@
   "common": {
     "version": "版本 {version}",
     "close": "关闭",
-    "copy": "复制"
+    "copy": "复制",
+    "back": "返回",
+    "backAria": "返回",
+    "loading": "正在加载"
   },
   "home": {
-    "getKey": "获取 VPN 密钥"
+    "getKey": "获取 VPN 密钥",
+    "getNewKey": "获取新的 VPN 密钥"
   },
   "toasts": {
     "copied": {
@@ -25,6 +29,11 @@
       "failedToGetKey": "获取 VPN 密钥失败"
     }
   },
+  "alerts": {
+    "errors": {
+      "title": "发生错误"
+    }
+  },
   "howToUse": {
     "trigger": "使用方法",
     "title": "使用说明",
@@ -41,6 +50,11 @@
       },
       "three": "输入您在本网站点击“获取 VPN 密钥”按钮后获得的访问密钥。"
     }
+  },
+  "fullKeyPage": {
+    "title": "您的 VPN 密钥",
+    "textareaAria": "VPN 密钥",
+    "copyAria": "复制 VPN 密钥"
   },
   "dialog": {
     "title": "您的 VPN 密钥",

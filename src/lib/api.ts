@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { CreateProxyKeyResponse } from '@/lib/types';
+import {CreateProxyKeyResponse, GetProxyKeyResponse} from '@/lib/types';
 
 export const api = axios.create({
   // In the browser, a relative baseURL targets the same origin.
@@ -10,6 +10,11 @@ export const api = axios.create({
 });
 
 export async function createProxyKey(): Promise<CreateProxyKeyResponse> {
-  const res = await api.post<CreateProxyKeyResponse>('/api/createProxyKey');
+  const res = await api.post<CreateProxyKeyResponse>('/api/keys');
+  return res.data;
+}
+
+export async function getProxyKey(uuid: string): Promise<GetProxyKeyResponse> {
+  const res = await api.get<GetProxyKeyResponse>(`/api/keys/${uuid}`);
   return res.data;
 }

@@ -2,10 +2,14 @@
   "common": {
     "version": "Version {version}",
     "close": "Close",
-    "copy": "Copy"
+    "copy": "Copy",
+    "back": "Back",
+    "backAria": "Go back",
+    "loading": "Loading"
   },
   "home": {
-    "getKey": "Get VPN key"
+    "getKey": "Get VPN key",
+    "getNewKey": "Get a new VPN key"
   },
   "toasts": {
     "copied": {
@@ -25,6 +29,11 @@
       "failedToGetKey": "Failed to get the VPN key"
     }
   },
+  "alerts": {
+    "errors": {
+      "title": "An error occurred"
+    }
+  },
   "howToUse": {
     "trigger": "How to use",
     "title": "Instructions",
@@ -41,6 +50,11 @@
       },
       "three": "Enter the access key you received after clicking the \"Get VPN key\" button on this website."
     }
+  },
+  "fullKeyPage": {
+    "title": "Your VPN key",
+    "textareaAria": "VPN key",
+    "copyAria": "Copy VPN key"
   },
   "dialog": {
     "title": "Your VPN key",

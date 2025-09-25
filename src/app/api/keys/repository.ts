@@ -1,5 +1,5 @@
 import db from '@/lib/db';
-import type { ProxyKey, Devices } from '@prisma/client';
+import type { ProxyKey, Devices, Prisma } from '@prisma/client';
 
 export async function upsertDevice(ip: string): Promise<Devices> {
   return db.devices.upsert({
@@ -21,7 +21,15 @@ export async function findAvailableProxyKeyForDevice(deviceId: number): Promise<
   });
 }
 
-export async function connectDeviceToProxyKey(proxyKeyId: number, deviceId: number): Promise<ProxyKey> {
+export async function findProxyKeyByUuid(uuid: string): Promise<ProxyKey | null> {
+  return db.proxyKey.findUnique({
+    where: {
+      uuid
+    }
+  });
+}
+
+export async function connectDeviceToProxyKey(proxyKeyId: string, deviceId: number): Promise<ProxyKey> {
   return db.proxyKey.update({
     where: { id: proxyKeyId },
     data: {
@@ -32,12 +40,23 @@ export async function connectDeviceToProxyKey(proxyKeyId: number, deviceId: numb
   });
 }
 
-export async function createProxyKeyWithDevice(accessUrl: string, deviceId: number): Promise<ProxyKey> {
+export async function createProxyKeyWithDevice(id: string, accessUrl: string, deviceId: number): Promise<ProxyKey> {
   return db.proxyKey.create({
     data: {
+      id,
       accessUrl,
       devices: {
         connect: { id: deviceId },
+      },
+    },
+  });
+}
+
+export async function deleteProxyKeysByIds(ids: string[]): Promise<Prisma.BatchPayload> {
+  return db.proxyKey.deleteMany({
+    where: {
+      id: {
+        in: ids,
       },
     },
   });

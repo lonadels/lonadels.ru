@@ -7,12 +7,13 @@ import {toast} from 'sonner';
 import axios from 'axios';
 import {createProxyKey} from '@/lib/api';
 import type {ApiErrorResponse} from '@/lib/types';
-import VpnKeyDialog from '@/components/vpn-key-dialog';
 import HowToUse from '@/components/how-to-use';
 import {useTranslations} from 'next-intl';
+import {useRouter} from 'next/navigation';
 
 export default function Home() {
   const t = useTranslations();
+  const router = useRouter();
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -20,10 +21,10 @@ export default function Home() {
     setLoading(true);
     createProxyKey()
       .then((data) => {
-        VpnKeyDialog.update({accessUrl: data.accessUrl});
-        VpnKeyDialog.open();
+        router.push(`/${data.uuid}`);
       })
       .catch((e) => {
+        setLoading(false);
         if (axios.isAxiosError(e)) {
           const status = e.response?.status;
           const body = e.response?.data as ApiErrorResponse | undefined;
@@ -50,20 +51,16 @@ export default function Home() {
         } else {
           toast.error(t('toasts.errors.generic'), {description: t('toasts.errors.failedToGetKey')});
         }
-      })
-      .finally(() => {
-        setLoading(false);
       });
-  }, [t]);
+  }, [t, router]);
 
   return (
     <div
       className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-svh p-8 pb-20 gap-16 sm:p-20">
-      <VpnKeyDialog.Viewport/>
       <main className="flex flex-col gap-2 row-start-2 items-center">
-        <Button variant={'outline'} onClick={handleButtonClick} aria-busy={loading} disabled={loading}
+        <Button variant={'outline'} onClick={handleButtonClick} aria-busy={loading} aria-disabled={loading} disabled={loading}
                 size="lg" className={'font-semibold gap-2'}>
-          {loading ? <LoaderCircle className="animate-spin"/> : <GlobeLock className="w-6 h-6"/>}
+          {loading ? <LoaderCircle className="animate-spin w-6 h-6"/> : <GlobeLock className="w-6 h-6"/>}
           {t('home.getKey')}
         </Button>
         <HowToUse/>

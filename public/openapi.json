@@ -2,28 +2,23 @@
   "openapi": "3.0.3",
   "info": {
     "title": "lonadels.ru API",
-    "version": "1.0.0",
-    "description": "OpenAPI specification for lonadels.ru API endpoints."
+    "version": "1.1.0",
+    "description": "OpenAPI specification for lonadels.ru API endpoints (updated after API refactor)."
   },
   "servers": [
-    {
-      "url": "/",
-      "description": "Current server"
-    }
+    { "url": "/", "description": "Current server" }
   ],
   "paths": {
-    "/api/createProxyKey": {
+    "/api/keys": {
       "post": {
         "summary": "Create Outline proxy access key",
-        "description": "Creates a new Outline access key and returns its access URL. Rate-limited by client IP.",
+        "description": "Creates a new Outline access key (or returns a reusable one) and returns its access URL and uuid. Rate-limited by client IP.",
         "responses": {
           "200": {
             "description": "Access key created successfully",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateProxyKeyResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/CreateProxyKeyResponse" }
               }
             }
           },
@@ -35,46 +30,26 @@
               "X-RateLimit-Remaining": { "description": "Requests remaining in current window", "schema": { "type": "string" } },
               "X-RateLimit-Reset": { "description": "Unix time when the window resets (seconds)", "schema": { "type": "string" } }
             },
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
           },
           "500": {
             "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
-              }
-            }
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
           }
         }
-      }
-    },
-    "/api/clearAllProxyKeys": {
-      "post": {
+      },
+      "delete": {
         "summary": "Clear all Outline proxy access keys",
         "description": "Administrative endpoint to revoke all Outline access keys. Requires x-api-key header.",
         "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-key",
-            "schema": { "type": "string" },
-            "required": true,
-            "description": "Administrative API key"
-          }
+          { "in": "header", "name": "x-api-key", "schema": { "type": "string" }, "required": true, "description": "Administrative API key" }
         ],
         "responses": {
           "200": {
             "description": "All keys have been revoked",
             "content": {
               "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": { "success": { "type": "integer", "example": 1 } },
-                  "required": ["success"]
-                }
+                "schema": { "type": "object", "properties": { "success": { "type": "integer", "example": 1 } }, "required": ["success"] }
               }
             }
           },
@@ -82,13 +57,29 @@
             "description": "Unauthorized",
             "content": {
               "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": { "error": { "type": "string", "example": "Unauthorized" } },
-                  "required": ["error"]
-                }
+                "schema": { "type": "object", "properties": { "error": { "type": "string", "example": "Unauthorized" } }, "required": ["error"] }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/keys/{uuid}": {
+      "get": {
+        "summary": "Get proxy key details by UUID",
+        "parameters": [
+          { "in": "path", "name": "uuid", "required": true, "schema": { "type": "string", "format": "uuid" }, "description": "Proxy key UUID" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Proxy key found",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/GetProxyKeyResponse" } }
+            }
+          },
+          "400": {
+            "description": "Invalid proxy key uuid",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } } }
           }
         }
       }
@@ -99,15 +90,22 @@
       "CreateProxyKeyResponse": {
         "type": "object",
         "properties": {
+          "uuid": { "type": "string", "format": "uuid", "description": "Internal UUID of the proxy key", "example": "7bcb5a5e-5d5b-4f34-9d33-0fb8d5e0a2a9" },
           "accessUrl": { "type": "string", "description": "Outline access URL", "example": "ss://..." }
         },
-        "required": ["accessUrl"]
+        "required": ["uuid", "accessUrl"]
+      },
+      "GetProxyKeyResponse": {
+        "type": "object",
+        "properties": {
+          "accessUrl": { "type": "string", "description": "Outline access URL", "example": "ss://..." },
+          "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp (ISO 8601)" }
+        },
+        "required": ["accessUrl", "createdAt"]
       },
       "ErrorResponse": {
         "type": "object",
-        "properties": {
-          "message": { "type": "string", "example": "Too many requests" }
-        },
+        "properties": { "message": { "type": "string", "example": "Too many requests" } },
         "required": ["message"]
       }
     }
