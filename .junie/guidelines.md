@@ -44,4 +44,12 @@ Key technologies:
 ## Submission Checklist for Junie
 - Keep diffs minimal and focused.
 - Update docs when you change behavior or structure.
+- Update README when changes affect usage, setup, developer workflow, or documentation to ensure information is supplemented/edited as necessary.
+- If you change API endpoints or their behavior, update the OpenAPI specification (public\\openapi.json) and ensure the API docs route reflects the changes.
 - If you modify config or infra, mention it in the status update.
+- If you introduce or change environment variables, update .env.example and README (setup section) to reflect the new vars.
+- Prisma: when models change, update schema.prisma, run `npx prisma generate`, and create a migration only if required (`npx prisma migrate dev --name <change>`); commit new files in migrations\\.
+- i18n: when adding/renaming user-facing text, keep messages\\*.json in sync across locales; when adding a locale, create messages\\<locale>.json and include it in SUPPORTED in src\\i18n\\request.ts.
+- API docs route: ensure src\\app\\api\\docs\\route.ts serves the latest public\\openapi.json after any spec changes.
+- If npm scripts or build tooling change (package.json), adjust .github\\workflows accordingly and update README commands.
+- If Dockerfile or docker-compose.yml change, update README (run/build instructions) and mention it in the status update.
