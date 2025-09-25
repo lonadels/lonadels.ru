@@ -4,7 +4,7 @@ import './globals.css';
 import {Toaster} from '@/components/ui/sonner';
 import {ThemeProvider} from '@/components/theme-provider';
 import {NextIntlClientProvider} from 'next-intl';
-import {getMessages} from 'next-intl/server';
+import {getMessages, getTranslations} from 'next-intl/server';
 import LanguageSelect from '@/components/language-select';
 import {ToggleColorMode} from '@/components/toggle-color-mode';
 import {ThemeColorMeta} from '@/components/theme-color-meta';
@@ -72,6 +72,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const messages = await getMessages();
+  const t = await getTranslations();
+  const version = process.env.version;
   return (
     <html dir="ltr" suppressHydrationWarning>
     <body
@@ -90,6 +92,11 @@ export default async function RootLayout({
           <ToggleColorMode/>
         </div>
         {children}
+        {version && (
+          <footer className="fixed bottom-4 left-1/2 -translate-x-1/2 text-xs text-muted-foreground">
+            {t('common.version', { version: String(version) })}
+          </footer>
+        )}
         <Toaster/>
       </NextIntlClientProvider>
     </ThemeProvider>

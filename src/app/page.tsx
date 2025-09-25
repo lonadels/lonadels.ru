@@ -12,7 +12,6 @@ import HowToUse from '@/components/how-to-use';
 import {useTranslations} from 'next-intl';
 
 export default function Home() {
-  const version = process.env.version;
   const t = useTranslations();
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -62,14 +61,12 @@ export default function Home() {
       className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-svh p-8 pb-20 gap-16 sm:p-20">
       <VpnKeyDialog.Viewport/>
       <main className="flex flex-col gap-2 row-start-2 items-center">
-        <Button variant={'outline'} onClick={handleButtonClick} aria-busy={loading} disabled={loading}>
-          {loading ? <LoaderCircle className="animate-spin"/> : <GlobeLock/>}
+        <Button variant={'outline'} onClick={handleButtonClick} aria-busy={loading} disabled={loading}
+                size="lg" className={'font-semibold gap-2'}>
+          {loading ? <LoaderCircle className="animate-spin w-6 h-6"/> : <GlobeLock className="w-6 h-6"/>}
           {t('home.getKey')}
         </Button>
         <HowToUse/>
-        {version && (
-          <p className="text-xs text-muted-foreground">{t('common.version', { version: String(version) })}</p>
-        )}
       </main>
     </div>
   );
