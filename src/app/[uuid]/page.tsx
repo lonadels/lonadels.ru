@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 export const dynamic = 'force-dynamic';
 
 interface PageProps {
-  params: { uuid: string };
+  params: Promise<{ uuid: string }>;
 }
 
 export default async function Page({ params }: PageProps) {
