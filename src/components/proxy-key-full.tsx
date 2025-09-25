@@ -13,6 +13,7 @@ import {getDateFnsLocale, getDateTimeConnector} from '@/i18n/locales';
 import {AlertCircleIcon, Copy, GlobeLock, LoaderCircle} from 'lucide-react';
 import {Alert, AlertDescription, AlertTitle} from './ui/alert';
 import axios from 'axios';
+import HowToUse from '@/components/how-to-use';
 
 interface ProxyKeyFullProps {
   uuid: string;
@@ -136,15 +137,19 @@ export default function ProxyKeyFull({uuid, initial = null, serverError = null}:
       onClick={() => textareaRef.current?.select()}
       ref={textareaRef}
     />
-    <div className={'flex flex-col sm:flex-row gap-2 sm:justify-end'}>
-      <Button disabled={loading} aria-busy={loading} aria-disabled={loading} onClick={handleGetNew} variant={'outline'} aria-label={t('common.backAria')}>
-        {loading ? <LoaderCircle className="animate-spin w-6 h-6"/> : <GlobeLock className="w-6 h-6"/>}
-        {t('home.getNewKey')}
-      </Button>
-      <Button onClick={handleCopy} aria-label={t('fullKeyPage.copyAria')}>
-        <Copy className="w-6 h-6"/>
-        {t('common.copy')}
-      </Button>
+    <div className={'flex flex-col-reverse gap-2 sm:flex-row sm:items-center sm:justify-between'}>
+      <HowToUse/>
+      <div className={'flex flex-col sm:flex-row gap-2 sm:justify-end'}>
+        <Button disabled={loading} aria-busy={loading} aria-disabled={loading} onClick={handleGetNew} variant={'outline'} aria-label={t('common.backAria')}>
+          {loading ? <LoaderCircle className="animate-spin w-6 h-6"/> : <GlobeLock className="w-6 h-6"/>}
+          {t('home.getNewKey')}
+        </Button>
+        <Button onClick={handleCopy} aria-label={t('fullKeyPage.copyAria')}>
+          <Copy className="w-6 h-6"/>
+          {t('common.copy')}
+        </Button>
+      </div>
     </div>
+
   </div>;
 }

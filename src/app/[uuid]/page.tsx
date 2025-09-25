@@ -2,6 +2,7 @@ import ProxyKeyFull from '@/components/proxy-key-full';
 import { getProxyKeyFromDB } from '@/lib/server/keys';
 import type { GetProxyKeyResponse } from '@/lib/types';
 import { notFound } from 'next/navigation';
+import HowToUse from '@/components/how-to-use';
 
 export const dynamic = 'force-dynamic';
 

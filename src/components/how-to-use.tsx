@@ -27,7 +27,7 @@ export default function HowToUse() {
   const isDesktop = useMediaQuery('(min-width: 768px)');
   const t = useTranslations();
 
-  const triggerButton = <Button variant="link">{t('howToUse.trigger')}</Button>;
+  const triggerButton = <Button variant="link" className={'px-1 underline decoration-dashed'}>{t('howToUse.trigger')}?</Button>;
   const title = t('howToUse.title');
   const description = (
     <div className="space-y-3 text-start">
