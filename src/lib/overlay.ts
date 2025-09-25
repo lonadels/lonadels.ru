@@ -3,7 +3,7 @@
 import React from 'react';
 import {createRoot, Root} from 'react-dom/client';
 import {NextIntlClientProvider, useLocale, useMessages} from 'next-intl';
-import {Locale} from '@/i18n/request';
+import {Locale} from '@/i18n/locales';
 
 export type OverlayComponent<P> = React.ComponentType<
   P & { open: boolean; onOpenChange: (open: boolean) => void }
