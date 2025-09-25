@@ -32,7 +32,7 @@
       "one": {
         "textBefore": "下载并安装",
         "linkText": "Outline 客户端",
-        "linkHref": "https://s3.amazonaws.com/outline-vpn/en/get-started/index.html#step-3"
+        "linkHref": "https://s3.amazonaws.com/outline-vpn/get-started/index.html#step-3"
       },
       "two": {
         "beforeBold": "点击",

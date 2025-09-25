@@ -32,7 +32,7 @@
       "one": {
         "textBefore": "Download and install",
         "linkText": "Outline client",
-        "linkHref": "https://s3.amazonaws.com/outline-vpn/en/get-started/index.html#step-3"
+        "linkHref": "https://s3.amazonaws.com/outline-vpn/get-started/index.html#step-3"
       },
       "two": {
         "beforeBold": "Click",
