@@ -7,11 +7,10 @@ import {CreateProxyKeyResponse} from '@/lib/types';
 
 import {createRateLimiter} from '@/lib/rateLimit';
 
-// Default rate limits per IP for this endpoint. You can reuse the limiter elsewhere with other configs.
 const limiter = createRateLimiter({
-  60_000: 5,            // per minute
-  21_600_000: 20,       // per 6 hours
-  86_400_000: 50,       // per 24 hours
+  60_000: 3,            // per minute
+  21_600_000: 10,       // per 6 hours
+  86_400_000: 30,       // per 24 hours
 });
 
 export async function POST() {
