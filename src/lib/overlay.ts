@@ -27,7 +27,7 @@ export function createOverlay<P>(Component: OverlayComponent<P>, initialProps: P
 
   let isOpen = false;
   let props = initialProps;
-  let destroyed = false;
+  const destroyed = false;
 
   // Will be provided by the surrounding app via Viewport hooks
   let currentMessages: Record<string, unknown> | null = null;
