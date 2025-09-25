@@ -53,5 +53,25 @@
     "light": "Jasny",
     "dark": "Ciemny",
     "system": "Systemowy"
+  },
+  "errorPages": {
+    "home": "Strona główna",
+    "retry": "Spróbuj ponownie",
+    "notFound": {
+      "title": "Nie znaleziono strony",
+      "description": "Żądana strona nie istnieje lub została przeniesiona."
+    },
+    "error": {
+      "title": "Wystąpił błąd",
+      "descriptionDefault": "Coś poszło nie tak. Spróbuj ponownie."
+    },
+    "global": {
+      "title": "Błąd krytyczny",
+      "descriptionDefault": "Coś się zepsuło. Spróbuj odświeżyć stronę."
+    },
+    "forbidden": {
+      "title": "Odmowa dostępu",
+      "description": "Nie masz uprawnień do wyświetlenia tej strony (403)."
+    }
   }
 }

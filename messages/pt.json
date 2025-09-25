@@ -53,5 +53,25 @@
     "light": "Claro",
     "dark": "Escuro",
     "system": "Sistema"
+  },
+  "errorPages": {
+    "home": "Início",
+    "retry": "Tentar novamente",
+    "notFound": {
+      "title": "Página não encontrada",
+      "description": "A página solicitada não existe ou foi movida."
+    },
+    "error": {
+      "title": "Ocorreu um erro",
+      "descriptionDefault": "Algo deu errado. Tente novamente."
+    },
+    "global": {
+      "title": "Erro crítico",
+      "descriptionDefault": "Algo quebrou. Tente recarregar a página."
+    },
+    "forbidden": {
+      "title": "Acesso negado",
+      "description": "Você não tem permissão para ver esta página (403)."
+    }
   }
 }

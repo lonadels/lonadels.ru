@@ -53,5 +53,25 @@
     "light": "Clair",
     "dark": "Sombre",
     "system": "Système"
+  },
+  "errorPages": {
+    "home": "Accueil",
+    "retry": "Réessayer",
+    "notFound": {
+      "title": "Page introuvable",
+      "description": "La page demandée n’existe pas ou a été déplacée."
+    },
+    "error": {
+      "title": "Une erreur s’est produite",
+      "descriptionDefault": "Quelque chose s’est mal passé. Veuillez réessayer."
+    },
+    "global": {
+      "title": "Erreur critique",
+      "descriptionDefault": "Quelque chose s’est cassé. Essayez de recharger la page."
+    },
+    "forbidden": {
+      "title": "Accès refusé",
+      "description": "Vous n’avez pas l’autorisation d’afficher cette page (403)."
+    }
   }
 }

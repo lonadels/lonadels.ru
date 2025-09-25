@@ -53,5 +53,25 @@
     "light": "Yorug‘",
     "dark": "Qorong‘i",
     "system": "Tizim"
+  },
+  "errorPages": {
+    "home": "Bosh sahifa",
+    "retry": "Qayta urinish",
+    "notFound": {
+      "title": "Sahifa topilmadi",
+      "description": "So'ralgan sahifa mavjud emas yoki ko'chirilgan."
+    },
+    "error": {
+      "title": "Xatolik yuz berdi",
+      "descriptionDefault": "Nimadir noto'g'ri ketdi. Iltimos, yana urinib ko'ring."
+    },
+    "global": {
+      "title": "Jiddiy xatolik",
+      "descriptionDefault": "Nimadir buzildi. Sahifani qayta yuklab ko'ring."
+    },
+    "forbidden": {
+      "title": "Ruxsat berilmagan",
+      "description": "Bu sahifani ko'rish uchun huquqingiz yo'q (403)."
+    }
   }
 }

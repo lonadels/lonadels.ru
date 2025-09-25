@@ -53,5 +53,25 @@
     "light": "Light",
     "dark": "Dark",
     "system": "System"
+  },
+  "errorPages": {
+    "home": "Home",
+    "retry": "Retry",
+    "notFound": {
+      "title": "Page not found",
+      "description": "The requested page doesn't exist or was moved."
+    },
+    "error": {
+      "title": "An error occurred",
+      "descriptionDefault": "Something went wrong. Please try again."
+    },
+    "global": {
+      "title": "Critical error",
+      "descriptionDefault": "Something broke. Try reloading the page."
+    },
+    "forbidden": {
+      "title": "Access denied",
+      "description": "You don't have permission to view this page (403)."
+    }
   }
 }
